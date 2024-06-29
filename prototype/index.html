@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Vuelo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Reserva de Vuelo</h1>
+    <form id="reservationForm">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" required>
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" required>
+        <label for="handLuggage">Equipaje de Mano:</label>
+        <input type="checkbox" id="handLuggage">
+        <label for="checkedLuggage">Equipaje de Bodega:</label>
+        <input type="checkbox" id="checkedLuggage">
+        <label for="seat">Asiento:</label>
+        <select id="seat" required></select>
+        <button type="submit">Reservar</button>
+    </form>
+    <h2>Mapa de Asientos</h2>
+    <div id="seatMap"></div>
+    <button id="viewPassengersButton">Ver Pasajeros Registrados</button>
+    <div id="passengerList"></div>
+    <script src="script.js"></script>
+</body>
+</html>
