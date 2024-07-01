@@ -23,9 +23,9 @@ nav {
 
 .iniciar-reservacion{
     margin: auto;
-    min-width: 25vw;
+    min-width: 20vw;
     max-width: 25vw;
-    min-height: 60vh;
+    min-height: 50vh;
     max-height: 80vh;
     background-color: #2d3250;
     padding: 0;
