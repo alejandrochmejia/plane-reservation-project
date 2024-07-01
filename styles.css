@@ -18,3 +18,40 @@ nav {
     margin-left: 2%;
     margin-top: 5px;
 }
+
+.iniciar-reservacion{
+    margin: auto;
+    width: 25vw;
+    min-height: 50vh;
+    background-color: #8da9c4;
+    padding: 0;
+    margin-top: 100px;
+    padding-top: 10px;
+    box-sizing: padding;
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: #134074;
+    border-style: solid;
+    box-shadow: 0 0 30px #000;
+}
+
+.divform{
+    width: 15vw;
+    margin: auto;
+}
+
+.inputdate{
+    width: 97%;
+    display: block;
+    margin-bottom: 50px;
+    border: none;
+    background-color: #8da9c4;
+    border-left: #134074 solid 3px;
+    padding-left: 5px;
+}
+
+#subtitulo{
+    padding-left: 10px;
+    border-left: #13315C solid 4px;
+    margin-left: 5%;
+}

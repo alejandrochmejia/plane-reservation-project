@@ -7,8 +7,33 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
     <nav>
         <img class="logo-nav" src="resources/logo.png">
     </nav>
+
+    <form class="iniciar-reservacion">
+        <h2 id="subtitulo">Reservación de Vuelo</h2>
+        <div class="divform">
+            <label for="lugarOrigen" class="labeldate">Lugar de origen</label>
+            <input id="lugarOrigen" class="inputdate" type="text" placeholder="Lugar de origen">
+        </div>
+        <div class="divform">
+            <label for="lugarDestino" class="labeldate">Lugar de destino</label>
+            <input id="lugarDestino" class="inputdate" type="text" placeholder="Lugar de destino">
+        </div>
+        <div class="divform">
+            <label for="fechaPartida" class="labeldate">Fecha de Partida</label>
+            <input id="fechaPartida" class="inputdate" type="date">
+        </div>
+        <div class="divform">
+            <label for="fechaRegreso" class="labeldate">Fecha de Regreso</label>
+            <input id="fechaRegreso" class="inputdate" type="date">
+        </div>
+        <div class="divform">
+            <button id="boton-form">Buscar</button>
+        </div>
+    </form>
+
 </body>
 </html>
