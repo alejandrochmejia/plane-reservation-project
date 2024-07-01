@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plane Reservation</title>
+    <title>Reservación</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="fonts.css">
 </head>
 <body>
 
@@ -15,23 +16,31 @@
     <form class="iniciar-reservacion">
         <h2 id="subtitulo">Reservación de Vuelo</h2>
         <div class="divform">
-            <label for="lugarOrigen" class="labeldate">Lugar de origen</label>
-            <input id="lugarOrigen" class="inputdate" type="text" placeholder="Lugar de origen">
+            <label for="lugarOrigen" class="labeldate">Lugar de Origen</label>
+            <select id="lugarOrigen" class="input">
+                <option value="oslo">Oslo, Noruega (Aeropuerto de Oslo-Gardermoen)</option>
+            </select>
         </div>
         <div class="divform">
-            <label for="lugarDestino" class="labeldate">Lugar de destino</label>
-            <input id="lugarDestino" class="inputdate" type="text" placeholder="Lugar de destino">
+            <label for="lugarDestino" class="labeldate">Lugar de Destino</label>
+            <select id="lugarDestino" class="input">
+                <option value="londres">Londres, Inglaterra (Aeropuerto Internacional de Londres Heathrow)</option>
+            </select>
         </div>
         <div class="divform">
             <label for="fechaPartida" class="labeldate">Fecha de Partida</label>
-            <input id="fechaPartida" class="inputdate" type="date">
+            <input id="fechaPartida" class="input" type="date">
         </div>
         <div class="divform">
             <label for="fechaRegreso" class="labeldate">Fecha de Regreso</label>
-            <input id="fechaRegreso" class="inputdate" type="date">
+            <input id="fechaRegreso" class="input" type="date">
         </div>
         <div class="divform">
-            <button id="boton-form">Buscar</button>
+            <label for="Pasajeros" class="labeldate">Pasajeros</label>
+            <input id="Pasajeros" class="input" type="number">
+        </div>
+        <div class="divform-boton">
+            <button id="boton-form">Reservar</button>
         </div>
     </form>
 
