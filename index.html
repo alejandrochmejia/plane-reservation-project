@@ -38,12 +38,12 @@
             <input id="Cantpasajeros" class="inputForm" type="number" value="1" min="1">
         </div>
         <div class="divform-boton">
-            <input type="submit" id="boton-form" value="Reservar" onclick="return reservar()">
+            <input type="submit" class="boton-form" value="Reservar" onclick="return btnreservar()">
         </div>
     </form>
 
     <!-- SEGUNDA DIVISION-->
-    <div class="iniciar-reservacion" id="form2">
+    <form class="iniciar-reservacion" id="form2">
         <h2 class="subtitulo">Datos de contacto</h2>
         <div class="div-ul">
         <ul>
@@ -82,14 +82,17 @@
             <input id="direccion-contacto" class="inputForm" type="text">
         </div>
         <div class="divform-boton">
-            <input type="submit" id="boton-form" value="Siguiente" onclick="return contacto()">
+            <input type="submit" class="boton-form" value="Siguiente" onclick="return btncontacto()">
         </div>
-    </div>
+    </form>
 
     <!--TERCERA DIVISION-->
     <form class="iniciar-reservacion" id="form3">
         <h2 class="subtitulo">Selección de asientos</h2>
         <div id="asientos-mapa"></div>
+        <div class="divform-boton">
+            <button class="boton-form">Siguiente</button>
+        </div>
     </form>
 
 </body>

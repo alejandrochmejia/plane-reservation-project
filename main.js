@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 let cant;
 let elegidos;
 
-function reservar(){
+function btnreservar(){
     cant = document.getElementById("Cantpasajeros").value;
     elegidos = 0;
     let form = document.getElementById("form1");
@@ -74,7 +74,7 @@ function reservar(){
     return false;
 };
 
-function contacto(){
+function btncontacto(){
     let form = document.getElementById("form2");
     form.style.display="none";
     document.getElementById("form3").style.display="block";
