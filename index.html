@@ -16,18 +16,18 @@
     </nav>
 
     <!-- PRIMERA DIVISION-->
-    <form class="iniciar-reservacion" id="form1">
+    <div class="iniciar-reservacion" id="form1">
         <h2 class="subtitulo">Reservación de Vuelo</h2>
         <div class="divform">
             <label for="lugarOrigen">Lugar de Origen</label>
             <select id="lugarOrigen" class="inputForm">
-                <option value="oslo">Oslo, Noruega (Aeropuerto de Oslo-Gardermoen)</option>
+                <option value="oslo">Valencia, Carabobo (Aeropuerto Arturo Michelena)</option>
             </select>
         </div>
         <div class="divform">
             <label for="lugarDestino">Lugar de Destino</label>
             <select id="lugarDestino" class="inputForm">
-                <option value="londres">Londres, Inglaterra (Aeropuerto Internacional de Londres Heathrow)</option>
+                <option value="londres">Mérida, Mérida (Aeropuerto Alberto Carnevalli)</option>
             </select>
         </div>
         <div class="divform">
@@ -41,10 +41,10 @@
         <div class="divform-boton">
             <input type="submit" class="boton-form" value="Reservar" onclick="return btnreservar()">
         </div>
-    </form>
+    </div>
 
     <!-- SEGUNDA DIVISION-->
-    <form class="iniciar-reservacion" id="form2">
+    <div class="iniciar-reservacion" id="form2">
         <h2 class="subtitulo">Datos de contacto</h2>
         <div class="div-ul">
             <ul>
@@ -56,45 +56,55 @@
         </div>
         <div class="divform">
             <label for="nombre-contacto">Nombre Completo/Compañia</label>
-            <input id="nombre-contacto" name="nombre" class="inputForm" type="text">
+            <input id="nombre-contacto" name="nombre" class="inputForm" type="text" placeholder="Nombre">
         </div>
         <div class="divform">
             <label for="documento-contacto">Número de Documento</label>
-            <input id="documento-contacto" name="documento" class="inputForm" type="text">
+            <input id="documento-contacto" name="documento" class="inputForm" type="text" placeholder="00000000">
         </div>
         <div class="divform">
             <label for="email-contacto">Correo Electrónico</label>
-            <input id="email-contacto" name="correo" class="inputForm" type="email">
+            <input id="email-contacto" name="correo" class="inputForm" type="email" placeholder="username@email.com">
         </div>
         <div class="divform">
             <label for="telefono-contacto">Número de telefono</label>
-            <input id="telefono-contacto" name="telefono" class="inputForm" type="text">
+            <input id="telefono-contacto" name="telefono" class="inputForm" type="text" placeholder="0414-1234567">
         </div>
         <div class="divform">
             <label for="pais-contacto">País</label>
             <select id="pais-contacto" class="inputForm">
                 <option value="Venezuela">Venezuela</option>
-                <option value="Inglaterra">Inglaterra</option>
-                <option value="Noruega">Noruega</option>
             </select>
         </div>
         <div class="divform">
             <label for="direccin-contacto">Dirección</label>
-            <input id="direccion-contacto" name="direccion" class="inputForm" type="text">
+            <input id="direccion-contacto" name="direccion" class="inputForm" type="text" placeholder="Caracas, Distrito Capital">
         </div>
         <div class="divform-boton">
             <input type="submit" class="boton-form" value="Siguiente" onclick="return btncontacto()">
         </div>
-    </form>
+    </div>
 
     <!--TERCERA DIVISION-->
-    <form class="iniciar-reservacion" id="form3">
+    <div class="iniciar-reservacion" id="form3">
         <h2 class="subtitulo">Selección de asientos</h2>
+        <div class="div-ul">
+            <ul>
+                <h3 id="h3-1">Importante</h3>
+                <li>Los asientos con laterales <strong>rojos</strong> son los asientos que se ubican en las salidas de emergencia.</li>
+            </ul>
+        </div>
         <div id="asientos-mapa"></div>
         <div class="divform-boton">
-            <button class="boton-form">Siguiente</button>
+            <button class="boton-form" onclick="return btnasientos()">Siguiente</button>
         </div>
-    </form>
+    </div>
+
+    <!--CUARTA DIVISION-->
+    <div class="iniciar-reservacion" id="form4">
+        <h2 class="subtitulo">Datos de pasajeros</h2>
+        <div class="div-form4"></div>
+    </div>
 
 </body>
 </html>

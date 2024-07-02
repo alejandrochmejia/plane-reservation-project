@@ -25,19 +25,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
         '38a','38b','38c','38d','38e','38f','38g','38h','38j',
         '39a','39b','39c','39d','39e','39f','39g','39h','39j',
         '40a','40b','40c','40d','40e','40f','40g','40h','40j',
-        '41a','41b','41c','41d','x','41f','41g','41h','41j',
-        '42a','42b','42c','42d','x','42f','42g','42h','42j',
-        '43a','43b','43c','43d','x','43f','43g','43h','43j',
-        'x','x','x','44c','44d','x','44f','44g','x','x',
-        'x','x','x','45c','45d','x','45f','45g','x','x',
+        '41a','41b','x','41d','41e','41f','x','x','41h','41j',
+        '42a','42b','x','42d','42e','42f','x','x','42h','42j',
+        '43a','43b','x','43d','43e','43f','x','x','43h','43j',
+        'x','x','x','x','44d','44e','44f','x','x','x','x',
+        'x','x','x','x','45d','45e','45f','x','x','x','x',
     ]
 
     const mapa = document.getElementById('asientos-mapa');
     asientos.forEach(seat => {
+
         if (seat == 'x'){
             const elemento = document.createElement('div');
             elemento.classList.add('blank');
             mapa.appendChild(elemento);
+
         } else if (seat.charAt(seat.length - 1) == 'b' || seat.charAt(seat.length - 1) == 'g'){
             const elemento = document.createElement('div');
             elemento.classList.add('seat', 'available');
@@ -48,19 +50,43 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const elemento2 = document.createElement('div');
             elemento2.classList.add('blank');
             mapa.appendChild(elemento2);
+
+        }else if (seat == '38j' || seat == '37j' || seat == '36j'){
+            const elemento = document.createElement('div');
+            elemento.classList.add('seat', 'available','emergency');
+            elemento.textContent = seat;
+            elemento.id = seat;
+            elemento.addEventListener('click', () => seleccionarAsiento(seat));
+            elemento.style.borderRightColor="#FF0000"
+            elemento.style.borderRightStyle="solid"
+            elemento.style.borderRightWidth="3px"
+            mapa.appendChild(elemento);
+
+        }else if (seat == '38a' || seat == '37a' || seat == '36a'){
+            const elemento = document.createElement('div');
+            elemento.classList.add('seat','available','emergency');
+            elemento.textContent = seat;
+            elemento.id = seat;
+            elemento.addEventListener('click', () => seleccionarAsiento(seat));
+            elemento.style.borderLeftColor="#FF0000"
+            elemento.style.borderLeftStyle="solid"
+            elemento.style.borderLeftWidth="3px"
+            mapa.appendChild(elemento);
+
         } else {
-        const elemento = document.createElement('div');
-        elemento.classList.add('seat', 'available');
-        elemento.textContent = seat;
-        elemento.id = seat;
-        elemento.addEventListener('click', () => seleccionarAsiento(seat));
-        mapa.appendChild(elemento);
+            const elemento = document.createElement('div');
+            elemento.classList.add('seat', 'available');
+            elemento.textContent = seat;
+            elemento.id = seat;
+            elemento.addEventListener('click', () => seleccionarAsiento(seat));
+            mapa.appendChild(elemento);
         }
     })
 });
 
 let cant;
 let elegidos;
+let listaasientos = [];
 
 function btnreservar(){
     cant = document.getElementById("Cantpasajeros").value;
@@ -80,6 +106,20 @@ function btncontacto(){
     console.log(cant);
     return false;
 };
+
+function btnasientos(){
+    let listaescogidos = document.getElementsByClassName('selected');
+    listaasientos = [];
+    for (let index = 0; index < listaescogidos.length; index++) {
+        listaasientos.push(listaescogidos[index].id)
+    }
+    
+    let form = document.getElementById("form3");
+    form.style.display="none";
+    document.getElementById("form4").style.display="block";
+    document.getElementById("form4").style.opacity="1";
+    return false;
+}
 
 function seleccionarAsiento(seat){
     const elemento = document.getElementById(seat);
