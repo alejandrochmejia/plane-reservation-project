@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 let cant;
 let elegidos;
 let listaasientos = [];
+let listareservas = [];
 
 function btnreservar(){
     cant = document.getElementById("Cantpasajeros").value;
@@ -112,8 +113,10 @@ function btnasientos(){
     listaasientos = [];
     for (let index = 0; index < listaescogidos.length; index++) {
         listaasientos.push(listaescogidos[index].id)
+        listareservas.push()
     }
     
+
     let form = document.getElementById("form3");
     form.style.display="none";
     document.getElementById("form4").style.display="block";
