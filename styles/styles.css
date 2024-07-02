@@ -1,6 +1,7 @@
 body{
     margin: 0;
-    background-image: url(resources/wallpaper.png);
+    background-image: url(../resources/wallpaper.png);
+    background-color: #2d3250;
     background-size: cover;
 }
 
