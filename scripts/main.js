@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     //Fecha Vuelo
     const inputFecha = document.getElementById('fechaPartida');
-    const inputFecha2 = document.getElementById('nacimiento-contacto');
     const hoy = new Date();
     const dia = String(hoy.getDate()).padStart(2, '0');
     const mes = String(hoy.getMonth() + 1).padStart(2, '0');
@@ -69,7 +68,6 @@ function btnreservar(){
     let form = document.getElementById("form1");
     form.style.display="none";
     document.getElementById("form2").style.display="block";
-    document.getElementById("form2").style.opacity="0";
     document.getElementById("form2").style.opacity="1";
     return false;
 };
@@ -78,7 +76,6 @@ function btncontacto(){
     let form = document.getElementById("form2");
     form.style.display="none";
     document.getElementById("form3").style.display="block";
-    document.getElementById("form3").style.opacity="0";
     document.getElementById("form3").style.opacity="1";
     console.log(cant);
     return false;

@@ -50,8 +50,7 @@ inputs.forEach (() => {
 })
 
 formulario.addEventListener ("submit", (e) => {
-    e.preventDefault();
-
+    e.preventDefault()
     if(campos.nombre && campos.documento && campos.correo && campos.direccion && campos.telefono) {
         formulario.reset();
     }
