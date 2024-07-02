@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="fonts.css">
     <script src="main.js"></script>
+    <script src="form.js"> </script>
 </head>
 <body>
 
@@ -46,28 +47,28 @@
     <form class="iniciar-reservacion" id="form2">
         <h2 class="subtitulo">Datos de contacto</h2>
         <div class="div-ul">
-        <ul>
-            <h3 id="h3-1">Consejos</h3>
-            <li>Tenga a mano los documentos de viaje durante el proceso de reserva, facturación y check-in.</li>
-            <li>Revise cuidadosamente toda la información que ingresa antes de enviar su reserva.</li>
-            <li>Después de la reserva contarás con 72 horas para facturar el vuelo, de manera online o por nuestras oficinas.</li>
-        </ul>
+            <ul>
+                <h3 id="h3-1">Consejos</h3>
+                <li>Tenga a mano los documentos de viaje durante el proceso de reserva, facturación y check-in.</li>
+                <li>Revise cuidadosamente toda la información que ingresa antes de enviar su reserva.</li>
+                <li>Después de la reserva contarás con 72 horas para facturar el vuelo, de manera online o por nuestras oficinas.</li>
+            </ul>
         </div>
         <div class="divform">
             <label for="nombre-contacto">Nombre Completo/Compañia</label>
-            <input id="nombre-contacto" class="inputForm" type="text">
+            <input id="nombre-contacto" name="nombre" class="inputForm" type="text">
         </div>
         <div class="divform">
             <label for="documento-contacto">Número de Documento</label>
-            <input id="documento-contacto" class="inputForm" type="text">
+            <input id="documento-contacto" name="documento" class="inputForm" type="text">
         </div>
         <div class="divform">
             <label for="email-contacto">Correo Electrónico</label>
-            <input id="email-contacto" class="inputForm" type="email">
+            <input id="email-contacto" name="correo" class="inputForm" type="email">
         </div>
         <div class="divform">
             <label for="telefono-contacto">Número de telefono</label>
-            <input id="telefono-contacto" class="inputForm" type="text">
+            <input id="telefono-contacto" name="telefono" class="inputForm" type="text">
         </div>
         <div class="divform">
             <label for="pais-contacto">País</label>
@@ -79,7 +80,7 @@
         </div>
         <div class="divform">
             <label for="direccin-contacto">Dirección</label>
-            <input id="direccion-contacto" class="inputForm" type="text">
+            <input id="direccion-contacto" name="direccion" class="inputForm" type="text">
         </div>
         <div class="divform-boton">
             <input type="submit" class="boton-form" value="Siguiente" onclick="return btncontacto()">
