@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         '41a','41b','41c','41d','x','41f','41g','41h','41j',
         '42a','42b','42c','42d','x','42f','42g','42h','42j',
         '43a','43b','43c','43d','x','43f','43g','43h','43j',
-        '44a','44b','44c','44d','x','44f','44g','44h','44j',
-        '45a','45b','45c','45d','x','45f','45g','45h','45j',
+        'x','x','x','44c','44d','x','44f','44g','x','x',
+        'x','x','x','45c','45d','x','45f','45g','x','x',
     ]
 
     const mapa = document.getElementById('asientos-mapa');
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             elemento.textContent = seat;
             elemento.id = seat;
             mapa.appendChild(elemento);
-            elemento2 = document.createElement('div');
+            const elemento2 = document.createElement('div');
             elemento2.classList.add('blank');
             mapa.appendChild(elemento2);
         } else {
@@ -62,7 +62,7 @@ let cant;
 let reservarBtn = document.getElementById('boton-form');
 
 function reservar(){
-    cant = document.getElementById("Cantpasajeros");
+    cant = document.getElementById("Cantpasajeros").value;
     let form = document.getElementById("form1");
     form.style.display="none";
     document.getElementById("form2").style.display="block";
@@ -77,5 +77,6 @@ function contacto(){
     document.getElementById("form3").style.display="block";
     document.getElementById("form3").style.opacity="0";
     document.getElementById("form3").style.opacity="1";
+    console.log(cant);
     return false;
 };

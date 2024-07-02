@@ -152,13 +152,13 @@ nav {
 }
 
 .seat.unavailable {
-    background-color: #f00;
+    background-color: #694242;
     cursor: not-allowed;
 }
 
 .seat:hover {
     transform: scale(1.1);
-    background-color: grey;
+    background-color: #f9b17a;;
 }
 
 #asientos-mapa {
