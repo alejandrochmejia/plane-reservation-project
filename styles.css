@@ -151,8 +151,12 @@ nav {
     background-color: #676f9d;
 }
 
+.seat.selected {
+    background-color: #f89d58;
+}
+
 .seat.unavailable {
-    background-color: #694242;
+    background-color: #8e3838;
     cursor: not-allowed;
 }
 

@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             elemento.classList.add('seat', 'available');
             elemento.textContent = seat;
             elemento.id = seat;
+            elemento.addEventListener('click', () => seleccionarAsiento(seat));
             mapa.appendChild(elemento);
             const elemento2 = document.createElement('div');
             elemento2.classList.add('blank');
@@ -53,16 +54,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
         elemento.classList.add('seat', 'available');
         elemento.textContent = seat;
         elemento.id = seat;
+        elemento.addEventListener('click', () => seleccionarAsiento(seat));
         mapa.appendChild(elemento);
         }
     })
 });
 
 let cant;
-let reservarBtn = document.getElementById('boton-form');
+let elegidos;
 
 function reservar(){
     cant = document.getElementById("Cantpasajeros").value;
+    elegidos = 0;
     let form = document.getElementById("form1");
     form.style.display="none";
     document.getElementById("form2").style.display="block";
@@ -80,3 +83,16 @@ function contacto(){
     console.log(cant);
     return false;
 };
+
+function seleccionarAsiento(seat){
+    const elemento = document.getElementById(seat);
+    if (elemento.classList.contains('available') && elegidos < cant) {
+        elemento.classList.add('selected');
+        elemento.classList.remove('available')
+        elegidos += 1;
+    } else if (elemento.classList.contains('selected')){
+        elemento.classList.add('available');
+        elemento.classList.remove('selected')
+        elegidos -= 1;
+    }
+}
