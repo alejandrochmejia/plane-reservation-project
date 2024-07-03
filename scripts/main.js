@@ -8,6 +8,7 @@ class Reserva{
         this.pais = pais;
         this.direccion = direccion;
         this.pasajeros = [];
+        this.asientos = []
     }
 }
 
@@ -16,7 +17,6 @@ class Pasajero{
         this.nombre = nombre;
         this.documento = documento;
         this.clasificacion = clasificacion
-        this.asiento = [];
     }
 }
 
@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const elemento = document.createElement('div');
             elemento.classList.add('seat', 'available');
             elemento.textContent = seat;
-            elemento.id = seat;
-            elemento.addEventListener('click', () => seleccionarAsiento(seat));
+            elemento.id = seat + "1";
+            elemento.addEventListener('click', () => seleccionarAsiento(seat + "1"));
             mapa.appendChild(elemento);
             const elemento2 = document.createElement('div');
             elemento2.classList.add('blank');
@@ -62,8 +62,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const elemento = document.createElement('div');
             elemento.classList.add('seat', 'available','emergency');
             elemento.textContent = seat;
-            elemento.id = seat;
-            elemento.addEventListener('click', () => seleccionarAsiento(seat));
+            elemento.id = seat + "1";
+            elemento.addEventListener('click', () => seleccionarAsiento(seat + "1"));
             elemento.style.borderRightColor="#FF0000"
             elemento.style.borderRightStyle="solid"
             elemento.style.borderRightWidth="3px"
@@ -73,8 +73,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const elemento = document.createElement('div');
             elemento.classList.add('seat','available','emergency');
             elemento.textContent = seat;
-            elemento.id = seat;
-            elemento.addEventListener('click', () => seleccionarAsiento(seat));
+            elemento.id = seat + "1";
+            elemento.addEventListener('click', () => seleccionarAsiento(seat + "1"));
             elemento.style.borderLeftColor="#FF0000"
             elemento.style.borderLeftStyle="solid"
             elemento.style.borderLeftWidth="3px"
@@ -84,8 +84,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const elemento = document.createElement('div');
             elemento.classList.add('seat', 'available');
             elemento.textContent = seat;
-            elemento.id = seat;
-            elemento.addEventListener('click', () => seleccionarAsiento(seat));
+            elemento.id = seat + "1";
+            elemento.addEventListener('click', () => seleccionarAsiento(seat + "1"));
             mapa.appendChild(elemento);
         }
     })
@@ -120,8 +120,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const elemento1 = document.createElement('div');
             elemento1.classList.add('seat', 'available');
             elemento1.textContent = seat1;
-            elemento1.id = seat1;
-            elemento1.addEventListener('click', () => seleccionarAsiento(seat1));
+            elemento1.id = seat1 + "2";
+            elemento1.addEventListener('click', () => seleccionarAsiento(seat1 + "2"));
             mapa1.appendChild(elemento1);
             const elemento21 = document.createElement('div');
             elemento21.classList.add('blank');
@@ -131,8 +131,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const elemento1 = document.createElement('div');
             elemento1.classList.add('seat', 'available','emergency');
             elemento1.textContent = seat1;
-            elemento1.id = seat1;
-            elemento1.addEventListener('click', () => seleccionarAsiento(seat1));
+            elemento1.id = seat1 + "2";
+            elemento1.addEventListener('click', () => seleccionarAsiento(seat1 + "2"));
             elemento1.style.borderRightColor="#FF0000"
             elemento1.style.borderRightStyle="solid"
             elemento1.style.borderRightWidth="3px"
@@ -142,24 +142,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const elemento1 = document.createElement('div');
             elemento1.classList.add('seat', 'available','emergency');
             elemento1.textContent = seat1;
-            elemento1.id = seat1;
-            elemento1.addEventListener('click', () => seleccionarAsiento(seat1));
-            elemento1.style.borderRightColor="#FF0000"
-            elemento1.style.borderRightStyle="solid"
-            elemento1.style.borderRightWidth="3px"
+            elemento1.id = seat1 + "2";
+            elemento1.addEventListener('click', () => seleccionarAsiento(seat1 + "2"));
+            elemento1.style.borderLeftColor="#FF0000"
+            elemento1.style.borderLeftStyle="solid"
+            elemento1.style.borderLeftWidth="3px"
             mapa1.appendChild(elemento1);
 
         } else {
             const elemento1 = document.createElement('div');
             elemento1.classList.add('seat', 'available');
             elemento1.textContent = seat1;
-            elemento1.id = seat1;
-            elemento1.addEventListener('click', () => seleccionarAsiento(seat1));
+            elemento1.id = seat1 + "2";
+            elemento1.addEventListener('click', () => seleccionarAsiento(seat1 + "2"));
             mapa1.appendChild(elemento1);
         }
     })
 });
-
 
 let cant;
 let elegidos;
@@ -350,10 +349,9 @@ function btncontacto(){
 };
 
 function btnpasajeros(){
-    let form = document.getElementById("form3");
-    form.style.display="none";
-    document.getElementById("form4").style.display="block";
-    document.getElementById("form4").style.opacity="1";
+    boleto = document.getElementById('tipoboleto').value;
+    origen = document.getElementById("lugarOrigen").value
+
     for (let i = 1; i <= cant; i++) {
         let nombre = document.getElementById("nombre" + i).value;
         let prefix = document.getElementById("prefix" + i).value;
@@ -370,10 +368,67 @@ function btnpasajeros(){
         let pasajero = new Pasajero(nombre,prefix + documento,selector)
         reserva.pasajeros.push(pasajero)
     }
+
+    if (boleto == "ida"){
+        if (origen == "valencia"){
+            let form = document.getElementById("form3");
+            form.style.display="none";
+            document.getElementById("form4").style.display="block";
+            document.getElementById("form4").style.opacity="1";
+            elegidos = 0;
+        } else if (origen == "merida"){
+            let form = document.getElementById("form3");
+            form.style.display="none";
+            document.getElementById("form5").style.display="block";
+            document.getElementById("form5").style.opacity="1";
+            elegidos = 0;
+        }
+    } else if (boleto = "ida-vuelta"){
+        let form = document.getElementById("form3");
+        form.style.display="none";
+        document.getElementById("form4").style.display="block";
+        document.getElementById("form4").style.opacity="1";
+        elegidos = 0;
+    }
 }
 
 function btnasientos(){
+    if (cant != document.getElementsByClassName('selected').length){
+        window.alert("Faltan asientos por elegir");
+        return false;
+    } else {
+        let selectedElements = Array.from(document.getElementsByClassName('selected'));
+        for (let index = 0; index < selectedElements.length; index++) {
+            reserva.asientos.push(selectedElements[index].id);
+            selectedElements[index].classList.add('unavailable');
+            selectedElements[index].classList.remove('selected');
+        };
+    };
 
+    if (boleto == "ida"){
+        return false;
+    } else if (boleto == "ida-vuelta"){
+        let form = document.getElementById("form4");
+        form.style.display="none";
+        document.getElementById("form5").style.display="block";
+        document.getElementById("form5").style.opacity="1";
+        elegidos = 0;
+    };
+}
+
+function btnasientos1(){
+    if (cant != document.getElementsByClassName('selected').length){
+        window.alert("Faltan asientos por elegir");
+        return false;
+    } else {
+        let selectedElements = Array.from(document.getElementsByClassName('selected'));
+        for (let index = 0; index < selectedElements.length; index++) {
+            reserva.asientos.push(selectedElements[index].id);
+            selectedElements[index].classList.add('unavailable');
+            selectedElements[index].classList.remove('selected');
+        };
+    }
+    return false;
 }
 
 function seleccionarAsiento(seat){
