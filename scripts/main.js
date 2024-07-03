@@ -127,16 +127,40 @@ function btncontacto(){
         document.getElementById("div-form3").appendChild(div);
         elemento = document.createElement('input');
         elemento.classList.add('inputForm');
-        elemento.id = "nombre" + i
-        elemento.type = "text"
+        elemento.id = "nombre" + i;
+        elemento.type = "text";
         elemento.placeholder = "Nombre Completo"
         div.appendChild(elemento);
         elemento = document.createElement('input');
         elemento.classList.add('inputForm');
-        elemento.id = "documento" + i
-        elemento.type = "text"
+        elemento.id = "documento" + i;
+        elemento.type = "text";
         elemento.placeholder = "Número de Documento"
         div.appendChild(elemento);
+        select = document.createElement('select');
+        select.classList.add('inputForm');
+        select.id = "selector" + i;
+        div.appendChild(select);
+        adulto = document.createElement('option');
+        adulto.value = "adulto";
+        adulto.innerHTML = "Adulto (16-64 años)";
+        select.appendChild(adulto);
+        nino = document.createElement('option');
+        nino.value = "nino";
+        nino.innerHTML = "Niño (4-15 años)";
+        select.appendChild(nino);
+        infante = document.createElement('option');
+        infante.value = "infante";
+        infante.innerHTML = "Infante (0-3 años)";
+        select.appendChild(infante);
+        mayor = document.createElement('option');
+        mayor.value = "mayor";
+        mayor.innerHTML = "Adulto Mayor (+65 años)";
+        select.appendChild(mayor);
+        discapacidad = document.createElement('option');
+        discapacidad.value = "discapacidad";
+        discapacidad.innerHTML = "Persona con discapacidad física";
+        select.appendChild(discapacidad);
     }
     return false;
 };

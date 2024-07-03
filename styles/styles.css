@@ -248,11 +248,10 @@ nav {
 }
 
 #consultar-boton{
-    height: 50px;
-    width: 200px;
-    margin-bottom: 70px;
+    height: 30px;
+    width: 100px;
     box-sizing: border-box;
-    margin-left: 65%;
+    margin-left: 5px;
     padding: 100pxb0;
 }
 
