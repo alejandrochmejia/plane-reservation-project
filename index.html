@@ -10,11 +10,22 @@
     <script src="scripts/main.js"></script>
     <script src="scripts/form.js"> </script>
 </head>
-<body>
+<body id="cuerpo">
 
-    <nav>
-        <img class="logo-nav" src="resources/logo.png" onclick="location.reload()">
+    <nav id="navigator">
+        <div class="logo-nav2" onclick="location.reload()"> </div>
+        <div class="dark-mode" onclick="return modooscuro()">
+            <div id="circulo"></div>
+        </div>
+        <button onclick="return abrirmodal()" class="boton-form" id="consultar-boton">Consultar</button>
     </nav>
+
+    <!--VENTANA DE CONSULTA -->
+    <div id="modal">
+        <div class="consulta">
+            <img src="resources/close.png" id="close-modal" onclick="return cerrarmodal()">
+        </div>
+    </div>
 
     <!-- PRIMERA DIVISION-->
     <div class="iniciar-reservacion" id="form1">
@@ -88,6 +99,15 @@
 
     <!--TERCERA DIVISION-->
     <div class="iniciar-reservacion" id="form3">
+        <h2 class="subtitulo">Datos de pasajeros</h2>
+        <div id="div-form3"></div>
+        <div class="divform-boton">
+            <button class="boton-form" onclick="return btnpasajeros()">Siguiente</button>
+        </div>
+    </div>
+
+    <!--CUARTA DIVISION-->
+    <div class="iniciar-reservacion" id="form4">
         <h2 class="subtitulo">Selección de asientos</h2>
         <div class="div-ul">
             <ul>
@@ -95,16 +115,11 @@
                 <li>Los asientos con laterales <strong>rojos</strong> son los asientos que se ubican en las salidas de emergencia.</li>
             </ul>
         </div>
-        <div id="asientos-mapa"></div>
+        <div id="asientos-mapa">
+        </div>
         <div class="divform-boton">
             <button class="boton-form" onclick="return btnasientos()">Siguiente</button>
         </div>
-    </div>
-
-    <!--CUARTA DIVISION-->
-    <div class="iniciar-reservacion" id="form4">
-        <h2 class="subtitulo">Datos de pasajeros</h2>
-        <div class="div-form4"></div>
     </div>
 
 </body>

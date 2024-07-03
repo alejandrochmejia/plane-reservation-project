@@ -5,9 +5,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const dia = String(hoy.getDate()).padStart(2, '0');
     const mes = String(hoy.getMonth() + 1).padStart(2, '0');
     const anio = hoy.getFullYear();
-
     const fechaActual = `${anio}-${mes}-${dia}`;
-    
     inputFecha.value = fechaActual;
     inputFecha.min = fechaActual;
     inputFecha.max = fechaActual;
@@ -88,6 +86,14 @@ let cant;
 let elegidos;
 let listaasientos = [];
 let listareservas = [];
+var darkmode = false;
+
+let nombrereservante;
+let documentoreservante;
+let emailreservante;
+let telefonoreservante;
+let paisreservante;
+let direccionreservante;
 
 function btnreservar(){
     cant = document.getElementById("Cantpasajeros").value;
@@ -100,39 +106,87 @@ function btnreservar(){
 };
 
 function btncontacto(){
+    nombrereservante = document.getElementById("nombre-contacto").value;
+    documentoreservante = document.getElementById("documento-contacto").value;
+    emailreservante = document.getElementById("email-contacto").value;
+    telefonoreservante = document.getElementById("telefono-contacto").value;
+    paisreservante = document.getElementById("pais-contacto").value;
+    direccionreservante = document.getElementById("direccion-contacto").value;
     let form = document.getElementById("form2");
     form.style.display="none";
     document.getElementById("form3").style.display="block";
     document.getElementById("form3").style.opacity="1";
-    console.log(cant);
+    for (let i = 1; i <= cant; i++) {
+        let elemento = document.createElement('h3');
+        elemento.classList.add('h3-1');
+        elemento.style.marginLeft = "10px"
+        elemento.innerHTML = "Pasajero " + i;
+        document.getElementById("div-form3").appendChild(elemento);
+        div = document.createElement('div');
+        div.classList.add('divform');
+        document.getElementById("div-form3").appendChild(div);
+        elemento = document.createElement('input');
+        elemento.classList.add('inputForm');
+        elemento.id = "nombre" + i
+        elemento.type = "text"
+        elemento.placeholder = "Nombre Completo"
+        div.appendChild(elemento);
+        elemento = document.createElement('input');
+        elemento.classList.add('inputForm');
+        elemento.id = "documento" + i
+        elemento.type = "text"
+        elemento.placeholder = "Número de Documento"
+        div.appendChild(elemento);
+    }
     return false;
 };
 
-function btnasientos(){
-    let listaescogidos = document.getElementsByClassName('selected');
-    listaasientos = [];
-    for (let index = 0; index < listaescogidos.length; index++) {
-        listaasientos.push(listaescogidos[index].id)
-        listareservas.push()
-    }
-    
-
+function btnpasajeros(){
     let form = document.getElementById("form3");
     form.style.display="none";
     document.getElementById("form4").style.display="block";
     document.getElementById("form4").style.opacity="1";
-    return false;
+}
+
+function btnasientos(){
 }
 
 function seleccionarAsiento(seat){
     const elemento = document.getElementById(seat);
     if (elemento.classList.contains('available') && elegidos < cant) {
         elemento.classList.add('selected');
-        elemento.classList.remove('available')
+        elemento.classList.remove('available');
         elegidos += 1;
     } else if (elemento.classList.contains('selected')){
         elemento.classList.add('available');
         elemento.classList.remove('selected')
         elegidos -= 1;
+    }
+}
+
+function abrirmodal(){
+    document.getElementById("modal").style.pointerEvents = "auto";
+    document.getElementById("modal").style.opacity = "1";
+}
+
+function cerrarmodal(){
+    document.getElementById("modal").style.pointerEvents = "none";
+    document.getElementById("modal").style.opacity = "0";
+}
+
+function modooscuro(){
+    if (darkmode == false){
+        console.log("test");
+        document.getElementById("circulo").style.marginLeft = "50%";
+        darkmode = true;
+        document.getElementById("cuerpo").style.backgroundImage = "url(../resources/wallpaper2.png)"
+        document.getElementById("circulo").style.backgroundColor = "#f4fefe"
+        document.getElementById("circulo").style.borderColor = "#b4c3cc"
+    } else if (darkmode == true){
+        document.getElementById("circulo").style.marginLeft = "2px";
+        darkmode = false;
+        document.getElementById("cuerpo").style.backgroundImage = "url(../resources/wallpaper.png)"
+        document.getElementById("circulo").style.backgroundColor = "#f89d58"
+        document.getElementById("circulo").style.borderColor = "#f9b17a"
     }
 }
