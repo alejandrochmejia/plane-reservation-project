@@ -1,6 +1,6 @@
 class Reserva{
-
-    constructor(nombre,documento,email,telefono,pais,direccion){
+    constructor(nombre,documento,email,telefono,pais,direccion,boletos){
+        this.boletos = boletos
         this.nombre = nombre;
         this.documento = documento;
         this.email = email;
@@ -12,28 +12,16 @@ class Reserva{
 }
 
 class Pasajero{
-
     constructor(nombre,documento,clasificacion){
         this.nombre = nombre;
         this.documento = documento;
         this.clasificacion = clasificacion
-        this.asiento = "";
+        this.asiento = [];
     }
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    //Fecha Vuelo
-    const inputFecha = document.getElementById('fechaPartida');
-    const hoy = new Date();
-    const dia = String(hoy.getDate()).padStart(2, '0');
-    const mes = String(hoy.getMonth() + 1).padStart(2, '0');
-    const anio = hoy.getFullYear();
-    const fechaActual = `${anio}-${mes}-${dia}`;
-    inputFecha.value = fechaActual;
-    inputFecha.min = fechaActual;
-    inputFecha.max = fechaActual;
-
-    //Asientos
+    //Asientos Valencia - Merida
     const asientos = [
         'x','x','x','30c','30d','30e','30f','30g','x','x',
         '31a','31b','31c','31d','31e','31f','31g','31h','31j',
@@ -52,10 +40,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         'x','x','x','x','44d','44e','44f','x','x','x','x',
         'x','x','x','x','45d','45e','45f','x','x','x','x',
     ]
-
     const mapa = document.getElementById('asientos-mapa');
     asientos.forEach(seat => {
-
         if (seat == 'x'){
             const elemento = document.createElement('div');
             elemento.classList.add('blank');
@@ -103,11 +89,81 @@ document.addEventListener('DOMContentLoaded', (event) => {
             mapa.appendChild(elemento);
         }
     })
+
+    //Asientos Merida-Valencia
+    const asientos1 = [
+        'x','x','x','30c','30d','30e','30f','30g','x','x',
+        '31a','31b','31c','31d','31e','31f','31g','31h','31j',
+        '32a','32b','32c','32d','32e','32f','32g','32h','32j',
+        '33a','33b','33c','33d','33e','33f','33g','33h','33j',
+        '34a','34b','34c','34d','34e','34f','34g','34h','34j',
+        '35a','35b','35c','35d','35e','35f','35g','35h','35j',
+        '36a','36b','36c','36d','36e','36f','36g','36h','36j',
+        '37a','37b','37c','37d','37e','37f','37g','37h','37j',
+        '38a','38b','38c','38d','38e','38f','38g','38h','38j',
+        '39a','39b','39c','39d','39e','39f','39g','39h','39j',
+        '40a','40b','40c','40d','40e','40f','40g','40h','40j',
+        '41a','41b','x','41d','41e','41f','x','x','41h','41j',
+        '42a','42b','x','42d','42e','42f','x','x','42h','42j',
+        '43a','43b','x','43d','43e','43f','x','x','43h','43j',
+        'x','x','x','x','44d','44e','44f','x','x','x','x',
+        'x','x','x','x','45d','45e','45f','x','x','x','x',
+    ]
+    const mapa1 = document.getElementById('asientos-mapa1');
+    asientos1.forEach(seat1 => {
+        if (seat1 == 'x'){
+            const elemento1 = document.createElement('div');
+            elemento1.classList.add('blank');
+            mapa1.appendChild(elemento1);
+
+        } else if (seat1.charAt(seat1.length - 1) == 'b' || seat1.charAt(seat1.length - 1) == 'g'){
+            const elemento1 = document.createElement('div');
+            elemento1.classList.add('seat', 'available');
+            elemento1.textContent = seat1;
+            elemento1.id = seat1;
+            elemento1.addEventListener('click', () => seleccionarAsiento(seat1));
+            mapa1.appendChild(elemento1);
+            const elemento21 = document.createElement('div');
+            elemento21.classList.add('blank');
+            mapa1.appendChild(elemento21);
+
+        }else if (seat1 == '38j' || seat1 == '37j' || seat1 == '36j'){
+            const elemento1 = document.createElement('div');
+            elemento1.classList.add('seat', 'available','emergency');
+            elemento1.textContent = seat1;
+            elemento1.id = seat1;
+            elemento1.addEventListener('click', () => seleccionarAsiento(seat1));
+            elemento1.style.borderRightColor="#FF0000"
+            elemento1.style.borderRightStyle="solid"
+            elemento1.style.borderRightWidth="3px"
+            mapa1.appendChild(elemento1);
+
+        }else if (seat1 == '38a' || seat1 == '37a' || seat1 == '36a'){
+            const elemento1 = document.createElement('div');
+            elemento1.classList.add('seat', 'available','emergency');
+            elemento1.textContent = seat1;
+            elemento1.id = seat1;
+            elemento1.addEventListener('click', () => seleccionarAsiento(seat1));
+            elemento1.style.borderRightColor="#FF0000"
+            elemento1.style.borderRightStyle="solid"
+            elemento1.style.borderRightWidth="3px"
+            mapa1.appendChild(elemento1);
+
+        } else {
+            const elemento1 = document.createElement('div');
+            elemento1.classList.add('seat', 'available');
+            elemento1.textContent = seat1;
+            elemento1.id = seat1;
+            elemento1.addEventListener('click', () => seleccionarAsiento(seat1));
+            mapa1.appendChild(elemento1);
+        }
+    })
 });
+
 
 let cant;
 let elegidos;
-let reserva;
+let reserva = 0;
 var darkmode = false;
 
 function btnhomepage(){
@@ -115,6 +171,66 @@ function btnhomepage(){
     form.style.display="none";
     document.getElementById("form1").style.display="block";
     document.getElementById("form1").style.opacity="1";
+    document.getElementById("consultar-boton").style.display="block";
+    document.getElementById("consultar-boton").style.opacity="1";
+    select1 = document.getElementById("lugarOrigen")
+    select2 = document.getElementById("lugarDestino")
+    selectb = document.getElementById("tipoboleto")
+    fecha1 = document.getElementById("fechaPartida")
+    fecha2 = document.getElementById("fechaRegreso")
+
+    select1.addEventListener('change', () => {
+        if (select1.value === 'valencia') {
+            select2.value = 'merida';
+            fecha1.value = '2024-07-03'
+            fecha1.min = '2024-07-03'
+            fecha1.max = '2024-07-03'
+        } else if (select1.value === 'merida') {
+            select2.value = 'valencia';
+            fecha1.value = '2024-07-13'
+            fecha1.min = '2024-07-13'
+            fecha1.max = '2024-07-13'
+        }
+    });
+
+    select2.addEventListener('change', () => {
+        if (select2.value === 'valencia') {
+            select1.value = 'merida';
+            fecha1.value = '2024-07-13'
+            fecha1.min = '2024-07-13'
+            fecha1.max = '2024-07-13'
+        } else if (select2.value === 'merida') {
+            select1.value = 'valencia';
+            fecha1.value = '2024-07-03'
+            fecha1.min = '2024-07-03'
+            fecha1.max = '2024-07-03'
+        }
+    });
+
+    selectb.addEventListener('change',()=>{
+        if (selectb.value === 'ida-vuelta'){
+            select1.value = 'valencia';
+            select2.value = 'merida';
+            fecha1.value = '2024-07-03'
+            fecha1.min = '2024-07-03'
+            fecha1.max = '2024-07-03'
+            fecha2.value = '2024-07-13'
+            fecha2.min = '2024-07-13'
+            fecha2.max = '2024-07-13'
+            select1.disabled = true;
+            select2.disabled = true;
+            fecha2.style.display = "block"
+            document.getElementById('label-regreso').style.display = "block"
+        } else if (selectb.value === 'ida'){
+            select1.value = 'valencia';
+            select2.value = 'merida';
+            select1.disabled = false;
+            select2.disabled = false;
+            fecha2.style.display = "none"
+            document.getElementById('label-regreso').style.display = "none"
+        }
+    });
+    
     return false;
 }
 
@@ -129,13 +245,35 @@ function btnreservar(){
 };
 
 function btncontacto(){
+
     let nombrereservante = document.getElementById("nombre-contacto").value;
+    let prefixDocumento = document.getElementById("prefijo-documento").value;
     let documentoreservante = document.getElementById("documento-contacto").value;
     let emailreservante = document.getElementById("email-contacto").value;
+    let prefixNumero = document.getElementById("prefijo-numero").value;
     let telefonoreservante = document.getElementById("telefono-contacto").value;
     let paisreservante = document.getElementById("pais-contacto").value;
     let direccionreservante = document.getElementById("direccion-contacto").value;
-    reserva = new Reserva(nombrereservante,documentoreservante,emailreservante,telefonoreservante,paisreservante,direccionreservante);
+    let boletosreservante = document.getElementById("tipoboleto").value;
+
+    if(nombrereservante == '' || documentoreservante =='' || emailreservante=='' || telefonoreservante=='' || paisreservante=='' || direccionreservante ==''){
+        window.alert("Faltan datos por rellenar.");
+        return false;
+    } else if (verificarNombre(nombrereservante)){
+        window.alert("Nombre no permitido.");
+        return false;
+    } else if (verificarNumeros(documentoreservante)){
+        window.alert("Documento no permitido.");
+        return false;
+    } else if (verificarEmail(emailreservante)){
+        window.alert("Email no permitido.");
+        return false;
+    } else if (verificarNumeros(telefonoreservante)){
+        window.alert("Telefono no permitido.");
+        return false;
+    }
+    reserva = new Reserva(nombrereservante,prefixDocumento + documentoreservante,emailreservante,prefixNumero + telefonoreservante,paisreservante,direccionreservante,boletosreservante);
+    console.log(reserva)
     let form = document.getElementById("form2");
     form.style.display="none";
     document.getElementById("form3").style.display="block";
@@ -204,6 +342,7 @@ function btnpasajeros(){
 }
 
 function btnasientos(){
+
 }
 
 function seleccionarAsiento(seat){
@@ -244,4 +383,28 @@ function modooscuro(){
         document.getElementById("circulo").style.backgroundColor = "#f89d58"
         document.getElementById("circulo").style.borderColor = "#f9b17a"
     }
+}
+
+function verificarNombre(cadena) {
+    // Expresión regular para detectar cualquier cosa que no sea una letra o un espacio
+    const regex = /[^\p{L}\s]/u;
+    
+    // Testea la cadena con la expresión regular
+    return regex.test(cadena);
+}
+
+function verificarEmail(cadena) {
+    // Expresión regular para detectar un correo electrónico válido
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    // Testea la cadena con la expresión regular y retorna el resultado inverso
+    return !regex.test(cadena);
+}
+
+function verificarNumeros(cadena) {
+    // Expresión regular para verificar si la cadena contiene al menos un carácter que no sea un número
+    const regex = /[^0-9]/;
+    
+    // Testea la cadena con la expresión regular y retorna el resultado
+    return regex.test(cadena);
 }

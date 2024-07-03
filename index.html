@@ -30,10 +30,10 @@
     <div class="iniciar-reservacion" id="form1">
         <h2 class="subtitulo">Reservación de Vuelo</h2>
         <div class="divform">
-            <label for="lugarOrigen">Tipo de Boleto</label>
-            <select id="lugarOrigen" class="inputForm">
-                <option value="oslo">Solo Ida</option>
-                <option value="oslo">Ida y vuelta</option>
+            <label for="tipoboleto">Tipo de Boleto</label>
+            <select id="tipoboleto" class="inputForm">
+                <option value="ida">Solo Ida</option>
+                <option value="ida-vuelta">Ida y vuelta</option>
             </select>
             <label for="lugarOrigen">Lugar de Origen</label>
             <select id="lugarOrigen" class="inputForm">
@@ -49,12 +49,16 @@
             </select>
         </div>
         <div class="divform">
-            <label for="fechaPartida">Fecha de Partida</label>
-            <input onclick="bloquearFecha()" id="fechaPartida" class="inputForm" type="date" name="fecha" max="" min="">
-        </div>
-        <div class="divform">
             <label for="Cantpasajeros">Pasajeros</label>
             <input id="Cantpasajeros" class="inputForm" type="number" value="1" min="1">
+        </div>
+        <div class="divform">
+            <label for="fechaPartida">Fecha de Partida</label>
+            <input id="fechaPartida" class="inputForm" type="date" min="2024-07-03" max="2024-07-03" value="2024-07-03">
+        </div>
+        <div class="divform">
+            <label id="label-regreso" for="fechaRegreso">Fecha de Regreso</label>
+            <input id="fechaRegreso" class="inputForm" type="date" name="fecha">
         </div>
         <div class="divform-boton">
             <input type="submit" class="boton-form" value="Reservar" onclick="return btnreservar()">
@@ -73,11 +77,16 @@
         </div>
         <div class="divform">
             <label for="nombre-contacto">Nombre Completo/Compañia</label>
-            <input id="nombre-contacto" name="nombre" class="inputForm" type="text" placeholder="Nombre">
+            <input id="nombre-contacto" name="nombre" class="inputForm" type="text" placeholder="Nombre" maxlength="40">
         </div>
         <div class="divform">
             <label for="documento-contacto">Número de Documento</label>
-            <input id="documento-contacto" name="documento" class="inputForm" type="text" placeholder="00000000">
+            <select id="prefijo-documento" class="inputForm  input-prefix">
+                <option value="v">Venezolano</option>
+                <option value="e">Extranjero</option>
+                <option value="j">Jurídico</option>
+            </select>
+            <input id="documento-contacto" name="documento" class="inputForm" type="text" placeholder="00000000" maxlength="9">
         </div>
         <div class="divform">
             <label for="email-contacto">Correo Electrónico</label>
@@ -85,7 +94,14 @@
         </div>
         <div class="divform">
             <label for="telefono-contacto">Número de telefono</label>
-            <input id="telefono-contacto" name="telefono" class="inputForm" type="text" placeholder="0414-1234567">
+            <select id="prefijo-numero" class="inputForm input-prefix">
+                <option value="0414-">0414</option>
+                <option value="0416-">0416</option>
+                <option value="0426-">0426</option>
+                <option value="0424-">0424</option>
+                <option value="0412-">0412</option>
+            </select>
+            <input id="telefono-contacto" name="telefono" class="inputForm" type="text" placeholder="1234567" maxlength="7">
         </div>
         <div class="divform">
             <label for="pais-contacto">País</label>
@@ -111,9 +127,9 @@
         </div>
     </div>
 
-    <!--CUARTA DIVISION-->
+    <!--CUARTA DIVISION (ASIENTOS VALENCIA - MERIDA)-->
     <div class="iniciar-reservacion" id="form4">
-        <h2 class="subtitulo">Selección de asientos</h2>
+        <h2 class="subtitulo">Selección de asientos (Valencia - Merida)</h2>
         <div class="div-ul">
             <ul>
                 <h3 id="h3-1">Importante</h3>
@@ -127,6 +143,22 @@
         </div>
     </div>
 
+    <!--CUARTA DIVISION (ASIENTOS MERIDA VALENCIA)-->
+    <div class="iniciar-reservacion" id="form5">
+        <h2 class="subtitulo">Selección de asientos (Merida -  Valencia)</h2>
+        <div class="div-ul">
+            <ul>
+                <h3 id="h3-1">Importante</h3>
+                <li>Los asientos con laterales <strong>rojos</strong> son los asientos que se ubican en las salidas de emergencia.</li>
+            </ul>
+        </div>
+        <div id="asientos-mapa1">
+        </div>
+        <div class="divform-boton">
+            <button class="boton-form" onclick="return btnasientos()">Siguiente</button>
+        </div>
+    </div>
+
     <!--HOME PAGE-->
     <div id="homepage">
         <div class="world">
@@ -134,8 +166,8 @@
         </div>
         <div class="homepage-form">
             <div class="home-form">
-                <h2 style="display: inline;" id="info-vuelo">Valencia - Caracas (100$)</h1>
                 <button onclick="return btnhomepage()" class="boton-form" id="homepage-boton">Ir</button>
+                <h2 style="display: inline;" id="info-vuelo">Valencia - Caracas (100$)</h1>
             </div>
         </div>
     </div>
