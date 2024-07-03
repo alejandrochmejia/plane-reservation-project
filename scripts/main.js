@@ -1,3 +1,26 @@
+class Reserva{
+
+    constructor(nombre,documento,email,telefono,pais,direccion){
+        this.nombre = nombre;
+        this.documento = documento;
+        this.email = email;
+        this.telefono = telefono;
+        this.pais = pais;
+        this.direccion = direccion;
+        this.pasajeros = [];
+    }
+}
+
+class Pasajero{
+
+    constructor(nombre,documento,clasificacion){
+        this.nombre = nombre;
+        this.documento = documento;
+        this.clasificacion = clasificacion
+        this.asiento = "";
+    }
+}
+
 document.addEventListener('DOMContentLoaded', (event) => {
     //Fecha Vuelo
     const inputFecha = document.getElementById('fechaPartida');
@@ -84,16 +107,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 let cant;
 let elegidos;
-let listaasientos = [];
-let listareservas = [];
+let reserva;
 var darkmode = false;
 
-let nombrereservante;
-let documentoreservante;
-let emailreservante;
-let telefonoreservante;
-let paisreservante;
-let direccionreservante;
+function btnhomepage(){
+    let form = document.getElementById("homepage");
+    form.style.display="none";
+    document.getElementById("form1").style.display="block";
+    document.getElementById("form1").style.opacity="1";
+    return false;
+}
 
 function btnreservar(){
     cant = document.getElementById("Cantpasajeros").value;
@@ -106,12 +129,13 @@ function btnreservar(){
 };
 
 function btncontacto(){
-    nombrereservante = document.getElementById("nombre-contacto").value;
-    documentoreservante = document.getElementById("documento-contacto").value;
-    emailreservante = document.getElementById("email-contacto").value;
-    telefonoreservante = document.getElementById("telefono-contacto").value;
-    paisreservante = document.getElementById("pais-contacto").value;
-    direccionreservante = document.getElementById("direccion-contacto").value;
+    let nombrereservante = document.getElementById("nombre-contacto").value;
+    let documentoreservante = document.getElementById("documento-contacto").value;
+    let emailreservante = document.getElementById("email-contacto").value;
+    let telefonoreservante = document.getElementById("telefono-contacto").value;
+    let paisreservante = document.getElementById("pais-contacto").value;
+    let direccionreservante = document.getElementById("direccion-contacto").value;
+    reserva = new Reserva(nombrereservante,documentoreservante,emailreservante,telefonoreservante,paisreservante,direccionreservante);
     let form = document.getElementById("form2");
     form.style.display="none";
     document.getElementById("form3").style.display="block";
@@ -170,6 +194,13 @@ function btnpasajeros(){
     form.style.display="none";
     document.getElementById("form4").style.display="block";
     document.getElementById("form4").style.opacity="1";
+    for (let i = 1; i <= cant; i++) {
+        let nombre = document.getElementById("nombre" + i).value;
+        let documento = document.getElementById("documento" + i).value;
+        let selector = document.getElementById("selector" + i).value;
+        let pasajero = new Pasajero(nombre,documento,selector)
+        reserva.pasajeros.push(pasajero)
+    }
 }
 
 function btnasientos(){

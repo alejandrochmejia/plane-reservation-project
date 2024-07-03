@@ -30,15 +30,22 @@
     <div class="iniciar-reservacion" id="form1">
         <h2 class="subtitulo">Reservación de Vuelo</h2>
         <div class="divform">
+            <label for="lugarOrigen">Tipo de Boleto</label>
+            <select id="lugarOrigen" class="inputForm">
+                <option value="oslo">Solo Ida</option>
+                <option value="oslo">Ida y vuelta</option>
+            </select>
             <label for="lugarOrigen">Lugar de Origen</label>
             <select id="lugarOrigen" class="inputForm">
-                <option value="oslo">Valencia, Carabobo (Aeropuerto Arturo Michelena)</option>
+                <option value="valencia">Valencia, Carabobo (Aeropuerto Arturo Michelena)</option>
+                <option value="merida">Mérida, Mérida (Aeropuerto Alberto Carnevalli)</option>
             </select>
         </div>
         <div class="divform">
             <label for="lugarDestino">Lugar de Destino</label>
             <select id="lugarDestino" class="inputForm">
-                <option value="londres">Mérida, Mérida (Aeropuerto Alberto Carnevalli)</option>
+                <option value="merida">Mérida, Mérida (Aeropuerto Alberto Carnevalli)</option>
+                <option value="valencia">Valencia, Carabobo (Aeropuerto Arturo Michelena)</option>
             </select>
         </div>
         <div class="divform">
@@ -62,7 +69,6 @@
                 <h3 id="h3-1">Consejos</h3>
                 <li>Tenga a mano los documentos de viaje durante el proceso de reserva, facturación y check-in.</li>
                 <li>Revise cuidadosamente toda la información que ingresa antes de enviar su reserva.</li>
-                <li>Después de la reserva contarás con 72 horas para facturar el vuelo, de manera online o por nuestras oficinas.</li>
             </ul>
         </div>
         <div class="divform">
@@ -118,6 +124,19 @@
         </div>
         <div class="divform-boton">
             <button class="boton-form" onclick="return btnasientos()">Siguiente</button>
+        </div>
+    </div>
+
+    <!--HOME PAGE-->
+    <div id="homepage">
+        <div class="world">
+            <h1 class="lema" onclick="return btnhomepage()">¡Reserva el viaje de tus sueños!</h1>
+        </div>
+        <div class="homepage-form">
+            <div class="home-form">
+                <h2 style="display: inline;" id="info-vuelo">Valencia - Caracas (100$)</h1>
+                <button onclick="return btnhomepage()" class="boton-form" id="homepage-boton">Ir</button>
+            </div>
         </div>
     </div>
 

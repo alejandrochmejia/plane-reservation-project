@@ -9,3 +9,9 @@
     font-weight: bold;
     font-style: italic;
 }
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(../resources/fonts/Montserrat-ExtraBold.ttf);
+    font-weight: bolder;
+}

@@ -120,6 +120,11 @@ nav {
     background-color: #f89d58;
 }
 
+#form1{
+    display: none;
+    opacity: 0;
+}
+
 #form2{
     display: none;
     opacity: 0;
@@ -252,7 +257,8 @@ nav {
     width: 100px;
     box-sizing: border-box;
     margin-left: 5px;
-    padding: 100pxb0;
+    display: none;
+    opacity: 0;
 }
 
 .dark-mode{
@@ -276,4 +282,92 @@ nav {
     margin: 2px;
     background-color: #f89d58;
     transition: all 0.5s linear;
+}
+
+.lema{
+    font-family: Montserrat;
+    font-weight: bolder;
+    font-size: 90px;
+    margin: auto;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 0 0 10px #000000;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+
+.lema:hover{
+    scale: 1.1;
+    color: #f9b17a;
+}
+
+.world {
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: url(../resources/world.png);
+    background-size: cover;
+    box-shadow: inset 0 0 20px #000,
+                inset -40px -10px 20px rgba(3, 32, 56, 0.7);
+    animation: world 5s linear infinite;
+    margin: auto;
+    padding: 0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    overflow: visible;
+    margin-top: 30px;
+}
+
+@keyframes world {
+    0% {
+        background-position-x: 0px;
+    }
+
+    100% {
+        background-position-x: -1200px;
+    }
+}
+
+.home-form{
+    margin-top: 50px;
+    width: 200px;
+    height: 60px;
+    margin: auto;
+    margin-bottom: 5px;
+    display: inline;
+}
+
+#homepage-boton{
+    margin: auto;
+    margin-top: 50px;
+    height: 60px;
+    width: 200px;
+    font-size: 20px;
+    display: inline;
+    margin-left: 20vw;
+}
+
+.homepage-form{
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    width: 80%;
+    height: 150px;
+    background-color: #2d3250;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: #424769;
+    border-width: 5px;
+}
+
+#info-vuelo{
+    display: inline;
+    font-family: 'Montserrat';
+    font-weight: bolder;
+    color: #ffffff;
+    font-size: 40px;
+    margin-left: 50px;
+    margin-top: 50px;
 }
