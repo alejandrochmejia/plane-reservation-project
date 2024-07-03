@@ -293,6 +293,28 @@ function btncontacto(){
         elemento.type = "text";
         elemento.placeholder = "Nombre Completo"
         div.appendChild(elemento);
+        select1 = document.createElement('select');
+        select1.classList.add('inputForm');
+        select1.classList.add('input-prefix');
+        select1.id = "prefix" + i;
+        select1.type = "text";
+        div.appendChild(select1);
+        venezolano = document.createElement('option');
+        venezolano.value = "v";
+        venezolano.innerHTML = "Venezolano"
+        select1.appendChild(venezolano);
+        extranjero = document.createElement('option');
+        extranjero.value = "e";
+        extranjero.innerHTML = "Extranjero"
+        select1.appendChild(extranjero);
+        juridico = document.createElement('option');
+        juridico.value = "j";
+        juridico.innerHTML = "Juridico"
+        select1.appendChild(juridico);
+        pasaporte = document.createElement('option');
+        pasaporte.value = "";
+        pasaporte.innerHTML = "Pasaporte"
+        select1.appendChild(pasaporte);
         elemento = document.createElement('input');
         elemento.classList.add('inputForm');
         elemento.id = "documento" + i;
@@ -334,9 +356,18 @@ function btnpasajeros(){
     document.getElementById("form4").style.opacity="1";
     for (let i = 1; i <= cant; i++) {
         let nombre = document.getElementById("nombre" + i).value;
+        let prefix = document.getElementById("prefix" + i).value;
         let documento = document.getElementById("documento" + i).value;
         let selector = document.getElementById("selector" + i).value;
-        let pasajero = new Pasajero(nombre,documento,selector)
+        if (verificarNombre(nombre)){
+            window.alert("Nombre de pasajero " + i + " no permitido.");
+            return false;
+        }
+        if (verificarNumeros(documento)){
+            window.alert("Documento de pasajero " + i + " no permitido.");
+            return false;
+        }
+        let pasajero = new Pasajero(nombre,prefix + documento,selector)
         reserva.pasajeros.push(pasajero)
     }
 }
