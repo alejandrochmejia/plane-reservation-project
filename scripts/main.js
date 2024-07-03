@@ -283,67 +283,92 @@ function btncontacto(){
         elemento.style.marginLeft = "10px"
         elemento.innerHTML = "Pasajero " + i;
         document.getElementById("div-form3").appendChild(elemento);
+
         div = document.createElement('div');
         div.classList.add('divform');
         document.getElementById("div-form3").appendChild(div);
+
         elemento = document.createElement('input');
         elemento.classList.add('inputForm');
         elemento.id = "nombre" + i;
         elemento.type = "text";
         elemento.placeholder = "Nombre Completo"
         div.appendChild(elemento);
+
         select1 = document.createElement('select');
         select1.classList.add('inputForm');
         select1.classList.add('input-prefix');
         select1.id = "prefix" + i;
         select1.type = "text";
         div.appendChild(select1);
+
         venezolano = document.createElement('option');
         venezolano.value = "v";
         venezolano.innerHTML = "Venezolano"
         select1.appendChild(venezolano);
+
         extranjero = document.createElement('option');
         extranjero.value = "e";
         extranjero.innerHTML = "Extranjero"
         select1.appendChild(extranjero);
+
         juridico = document.createElement('option');
         juridico.value = "j";
         juridico.innerHTML = "Juridico"
         select1.appendChild(juridico);
+
         pasaporte = document.createElement('option');
         pasaporte.value = "";
         pasaporte.innerHTML = "Pasaporte"
         select1.appendChild(pasaporte);
+
         elemento = document.createElement('input');
         elemento.classList.add('inputForm');
         elemento.id = "documento" + i;
         elemento.type = "text";
         elemento.placeholder = "Número de Documento"
         div.appendChild(elemento);
+
         select = document.createElement('select');
         select.classList.add('inputForm');
         select.id = "selector" + i;
         div.appendChild(select);
+
         adulto = document.createElement('option');
         adulto.value = "adulto";
         adulto.innerHTML = "Adulto (16-64 años)";
         select.appendChild(adulto);
+
         nino = document.createElement('option');
         nino.value = "nino";
         nino.innerHTML = "Niño (4-15 años)";
         select.appendChild(nino);
+
         infante = document.createElement('option');
         infante.value = "infante";
         infante.innerHTML = "Infante (0-3 años)";
         select.appendChild(infante);
+
         mayor = document.createElement('option');
         mayor.value = "mayor";
         mayor.innerHTML = "Adulto Mayor (+65 años)";
         select.appendChild(mayor);
+
         discapacidad = document.createElement('option');
         discapacidad.value = "discapacidad";
         discapacidad.innerHTML = "Persona con discapacidad física";
         select.appendChild(discapacidad);
+
+        select2 = document.createElement('select');
+        select2.classList.add('inputForm');
+        select2.classList.add('input-prefix');
+        select2.id = "equipaje" + i;
+        div.appendChild(select2);
+
+        ambos = document.createElement('option');
+        ambos.value = "Equipaje de mano y de bodega";
+        ambos.innerHTML = "Equipaje de mano y de bodega"
+        select2.appendChild(ambos);
     }
     return false;
 };
@@ -406,6 +431,11 @@ function btnasientos(){
     };
 
     if (boleto == "ida"){
+        let form = document.getElementById("form4");
+        form.style.display="none";
+        document.getElementById("form6").style.display="block";
+        document.getElementById("form6").style.opacity="1";
+        datosFactura();
         return false;
     } else if (boleto == "ida-vuelta"){
         let form = document.getElementById("form4");
@@ -413,6 +443,7 @@ function btnasientos(){
         document.getElementById("form5").style.display="block";
         document.getElementById("form5").style.opacity="1";
         elegidos = 0;
+        return false;
     };
 }
 
@@ -428,6 +459,11 @@ function btnasientos1(){
             selectedElements[index].classList.remove('selected');
         };
     }
+    let form = document.getElementById("form5");
+    form.style.display="none";
+    document.getElementById("form6").style.display="block";
+    document.getElementById("form6").style.opacity="1";
+    datosFactura();
     return false;
 }
 
@@ -469,6 +505,26 @@ function modooscuro(){
         document.getElementById("circulo").style.backgroundColor = "#f89d58"
         document.getElementById("circulo").style.borderColor = "#f9b17a"
     }
+}
+
+function datosFactura(){
+    let div = document.getElementById('datos-factura')
+    let boleto = document.getElementById('tipoboleto').value;
+    let monto;
+    if (boleto == 'ida') monto = 100;
+    if (boleto == 'ida-vuelta') monto = 180;
+    for (let index = 0; index < cant; index++) {
+        let elemento = document.createElement('h3');
+        elemento.id= 'h3-1';
+        elemento.innerHTML = `Boleto ${boleto}: ${monto}$`
+        div.appendChild(elemento);
+    }
+    div.appendChild(document.createElement('hr'));
+    let total = monto * cant;
+    let elemento = document.createElement('h3');
+    elemento.id= 'h3-1';
+    elemento.innerHTML = `Monto de boletos total: ${total}$`
+    div.appendChild(elemento);
 }
 
 function verificarNombre(cadena) {
