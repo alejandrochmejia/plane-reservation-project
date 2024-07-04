@@ -643,13 +643,13 @@ function modooscuro(){ //Funcion que habilita y deshabilita el modo oscuro
         console.log("test");
         document.getElementById("circulo").style.marginLeft = "50%";
         darkmode = true;
-        document.getElementById("cuerpo").style.backgroundImage = "url(../resources/wallpaper2.png)"
+        document.getElementById("cuerpo").style.backgroundImage = "url(resources/wallpaper2.png)"
         document.getElementById("circulo").style.backgroundColor = "#f4fefe"
         document.getElementById("circulo").style.borderColor = "#b4c3cc"
     } else if (darkmode == true){
         document.getElementById("circulo").style.marginLeft = "2px";
         darkmode = false;
-        document.getElementById("cuerpo").style.backgroundImage = "url(../resources/wallpaper.png)"
+        document.getElementById("cuerpo").style.backgroundImage = "url(resources/wallpaper.png)"
         document.getElementById("circulo").style.backgroundColor = "#f89d58"
         document.getElementById("circulo").style.borderColor = "#f9b17a"
     }
