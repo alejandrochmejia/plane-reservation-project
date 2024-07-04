@@ -8,15 +8,17 @@ class Reserva{
         this.pais = pais;
         this.direccion = direccion;
         this.pasajeros = [];
-        this.asientos = []
+        this.asientos = [];
+        this.codigo;
     }
 }
 
 class Pasajero{
-    constructor(nombre,documento,clasificacion){
+    constructor(nombre,documento,clasificacion,equipaje){
         this.nombre = nombre;
         this.documento = documento;
-        this.clasificacion = clasificacion
+        this.clasificacion = clasificacion;
+        this.equipaje = equipaje;
     }
 }
 
@@ -160,6 +162,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     })
 });
 
+let listareservas = [];
+
 let cant;
 let elegidos;
 let reserva = 0;
@@ -240,6 +244,13 @@ function btnreservar(){
     form.style.display="none";
     document.getElementById("form2").style.display="block";
     document.getElementById("form2").style.opacity="1";
+
+    document.getElementById("nombre-contacto").value = '';
+    document.getElementById("documento-contacto").value = '';
+    document.getElementById("email-contacto").value = '';
+    document.getElementById("telefono-contacto").value = '';
+    document.getElementById("direccion-contacto").value = '';
+
     return false;
 };
 
@@ -277,6 +288,11 @@ function btncontacto(){
     form.style.display="none";
     document.getElementById("form3").style.display="block";
     document.getElementById("form3").style.opacity="1";
+
+    while (document.getElementById("div-form3").firstChild) {
+        document.getElementById("div-form3").removeChild(document.getElementById("div-form3").firstChild);
+    }
+
     for (let i = 1; i <= cant; i++) {
         let elemento = document.createElement('h3');
         elemento.classList.add('h3-1');
@@ -341,12 +357,12 @@ function btncontacto(){
 
         nino = document.createElement('option');
         nino.value = "nino";
-        nino.innerHTML = "Niño (4-15 años)";
+        nino.innerHTML = "Niño (5-15 años)";
         select.appendChild(nino);
 
         infante = document.createElement('option');
         infante.value = "infante";
-        infante.innerHTML = "Infante (0-3 años)";
+        infante.innerHTML = "Infante (0-4 años)";
         select.appendChild(infante);
 
         mayor = document.createElement('option');
@@ -369,11 +385,28 @@ function btncontacto(){
         ambos.value = "Equipaje de mano y de bodega";
         ambos.innerHTML = "Equipaje de mano y de bodega"
         select2.appendChild(ambos);
+
+        bodega = document.createElement('option');
+        bodega.value = "Equipaje de bodega";
+        bodega.innerHTML = "Equipaje bodega (Hasta 25kg)"
+        select2.appendChild(bodega);
+
+        mano = document.createElement('option');
+        mano.value = "Equipaje de mano";
+        mano.innerHTML = "Equipaje mano (Hasta 8kg)"
+        select2.appendChild(mano);
+
+        ninguno = document.createElement('option');
+        ninguno.value = "Sin equipaje";
+        ninguno.innerHTML = "Sin equipaje"
+        select2.appendChild(mano);
     }
     return false;
 };
 
 function btnpasajeros(){
+    reserva.pasajeros = [];
+    let band = false;
     boleto = document.getElementById('tipoboleto').value;
     origen = document.getElementById("lugarOrigen").value
 
@@ -382,6 +415,7 @@ function btnpasajeros(){
         let prefix = document.getElementById("prefix" + i).value;
         let documento = document.getElementById("documento" + i).value;
         let selector = document.getElementById("selector" + i).value;
+        let equipaje = document.getElementById("equipaje" + i).value;
         if (verificarNombre(nombre)){
             window.alert("Nombre de pasajero " + i + " no permitido.");
             return false;
@@ -390,8 +424,19 @@ function btnpasajeros(){
             window.alert("Documento de pasajero " + i + " no permitido.");
             return false;
         }
-        let pasajero = new Pasajero(nombre,prefix + documento,selector)
+        let pasajero = new Pasajero(nombre,prefix + documento,selector,equipaje)
         reserva.pasajeros.push(pasajero)
+    }
+
+    for (let index = 0; index < reserva.pasajeros.length; index++) {
+        if (reserva.pasajeros[index].clasificacion != "infante"){
+            band = true;
+        }
+    }
+
+    if (!band){
+        window.alert("No pueden viajar infantes solos");
+        return false;
     }
 
     if (boleto == "ida"){
@@ -418,6 +463,20 @@ function btnpasajeros(){
 }
 
 function btnasientos(){
+    document.getElementById("numero-tarjeta").value = '';
+    document.getElementById("dia").value = '';
+    document.getElementById("mes").value = '';
+    document.getElementById("cvv").value = '';
+    document.getElementById("nombre-tarjeta").value = '';
+    document.getElementById("kilogramos").value = "1";
+    document.getElementById("equipaje-adicional").checked = false;
+    document.getElementById("ayuda-equipaje").checked = false;
+    document.getElementById("traductores").checked = false;
+    document.getElementById("medico").checked = false;
+    while (document.getElementById("div-cuidado").firstChild) {
+        document.getElementById("div-cuidado").removeChild(document.getElementById("div-cuidado").firstChild);
+    }
+
     if (cant != document.getElementsByClassName('selected').length){
         window.alert("Faltan asientos por elegir");
         return false;
@@ -483,6 +542,7 @@ function seleccionarAsiento(seat){
 function abrirmodal(){
     document.getElementById("modal").style.pointerEvents = "auto";
     document.getElementById("modal").style.opacity = "1";
+    listar();
 }
 
 function cerrarmodal(){
@@ -508,7 +568,12 @@ function modooscuro(){
 }
 
 function datosFactura(){
-    let div = document.getElementById('datos-factura')
+    let div = document.getElementById('datos-factura');
+
+    while (div.firstChild) {
+        div.removeChild(div.firstChild);
+    }
+
     let boleto = document.getElementById('tipoboleto').value;
     let monto;
     if (boleto == 'ida') monto = 100;
@@ -519,12 +584,153 @@ function datosFactura(){
         elemento.innerHTML = `Boleto ${boleto}: ${monto}$`
         div.appendChild(elemento);
     }
+    let montoEquipajes = 0;
+    for (let index = 0; index < cant; index++) {
+        let elemento2 = document.createElement('h3');
+        elemento2.id= 'h3-1';
+        let equipAux = reserva.pasajeros[index].equipaje
+        if (equipAux == "Equipaje de mano y de bodega") {
+            elemento2.innerHTML = `${equipAux}: 40$`;
+            montoEquipajes += 40;
+        }
+        else if (equipAux == "Equipaje de mano") {
+            elemento2.innerHTML = `${equipAux}: 15$`;
+            montoEquipajes += 15;
+    }
+        else if (equipAux == "Equipaje de bodega") {
+            elemento2.innerHTML = `${equipAux}: 25$`
+            montoEquipajes += 25;
+        };
+        div.appendChild(elemento2);
+    }
+
     div.appendChild(document.createElement('hr'));
     let total = monto * cant;
+
     let elemento = document.createElement('h3');
     elemento.id= 'h3-1';
     elemento.innerHTML = `Monto de boletos total: ${total}$`
     div.appendChild(elemento);
+
+    let elemento1 = document.createElement('h3');
+    elemento1.id= 'h3-1';
+    elemento1.innerHTML = `Monto de equipajes total: ${montoEquipajes}$`
+    div.appendChild(elemento1);
+
+    let elemento2 = document.createElement('h3');
+    elemento2.id= 'h3-1';
+    elemento2.innerHTML = `Acumulado: ${total + montoEquipajes}$`
+    div.appendChild(elemento2);
+
+    let montoCuidado = 0;
+    let band1 = false;
+    for (let index = 0; index < reserva.pasajeros.length; index++) {
+        if (reserva.pasajeros[index].clasificacion == 'nino'){
+            band1 = true;
+        }
+    }
+    if (band1){
+        element = document.createElement("h3");
+        element.innerHTML = "Al viajar solamente pasajeros niños es obligatorio pagar un servicio de trato y cuidado especial: 30$";
+        document.getElementById("div-cuidado").appendChild(element);
+        montoCuidado = 30;
+    }
+
+    let adicional = document.getElementById("equipaje-adicional");
+    let ayuda = document.getElementById("ayuda-equipaje")
+    let traductor = document.getElementById("traductores");
+    let medico = document.getElementById("medico");
+
+    let kilogramos = document.getElementById("kilogramos");
+
+    let montoAdicional = 0;
+    let montoAyuda = 0;
+    let montoTraductor = 0;
+    let montoMedico = 0;
+
+    adicional.addEventListener('change',()=>{
+        if(adicional.checked){
+            document.getElementById('kilogramos').disabled = false;
+            montoAdicional = document.getElementById('kilogramos').value * 10
+        } else {
+            document.getElementById('kilogramos').disabled = true;
+            montoAdicional = 0;
+        }
+        document.getElementById('montofinal').innerHTML = `Monto Total Final: ${total + montoEquipajes + montoAdicional + montoAyuda + montoTraductor + montoMedico + montoCuidado}$`;
+    });
+
+    kilogramos.addEventListener('change',()=>{
+        if (document.getElementById('kilogramos').disabled == false){
+            montoAdicional = document.getElementById('kilogramos').value * 10
+        } else{
+            montoAdicional = 0;
+        }
+        document.getElementById('montofinal').innerHTML = `Monto Total Final: ${total + montoEquipajes + montoAdicional + montoAyuda + montoTraductor + montoMedico + montoCuidado}$`;
+    });
+
+    ayuda.addEventListener('change',()=>{
+        if(ayuda.checked) montoAyuda = 15;
+        else montoAyuda = 0;
+        document.getElementById('montofinal').innerHTML = `Monto Total Final: ${total + montoEquipajes + montoAdicional + montoAyuda + montoTraductor + montoMedico + montoCuidado}$`;
+    });
+
+    traductor.addEventListener('change',()=>{
+        if(traductor.checked) montoTraductor = 50;
+        else montoTraductor = 0;
+        document.getElementById('montofinal').innerHTML = `Monto Total Final: ${total + montoEquipajes + montoAdicional + montoAyuda + montoTraductor + montoMedico + montoCuidado}$`;
+    });
+
+    medico.addEventListener('change',()=>{
+        if(medico.checked) montoMedico = 0;
+        else montoMedico = 0;
+        document.getElementById('montofinal').innerHTML = `Monto Total Final: ${total + montoEquipajes + montoAdicional + montoAyuda + montoTraductor + montoMedico + montoCuidado}$`;
+    });
+
+    document.getElementById('montofinal').innerHTML = `Monto Total Final: ${total + montoEquipajes + montoAdicional + montoAyuda + montoTraductor + montoMedico + montoCuidado}$`;
+
+}
+
+function btnfacturacion(){
+    numero = document.getElementById("numero-tarjeta").value
+    dd = document.getElementById("dia").value;
+    mm = document.getElementById("mes").value;
+    cvv = document.getElementById("cvv").value;
+    nombre = document.getElementById("nombre-tarjeta").value;
+
+    if (dd.length != 2 || verificarNumeros(dd)){
+        window.alert("Datos de la tarjeta erroneos")
+        return false;
+    } else if (mm.length != 2 || verificarNumeros(mm)){
+        window.alert("Datos de la tarjeta erroneos")
+        return false;
+    } else if (cvv.length != 3 || verificarNumeros(cvv)){
+        window.alert("Datos de la tarjeta erroneos")
+        return false;
+    }  else if (numero.length != 16 || verificarNumeros(numero)){
+        window.alert("Datos de la tarjeta erroneos")
+        return false;
+    } else if(verificarNombre(nombre)){
+        window.alert("Datos de la tarjeta erroneos")
+        return false;
+    } else if (dd == "" || mm == "" || numero == "" || cvv == "" || nombre == ""){
+        window.alert("Datos de la tarjeta erroneos")
+        return false;
+    }
+
+    listareservas.push(reserva);
+    let form = document.getElementById("form6");
+    form.style.display="none";
+    document.getElementById("form1").style.display="block";
+    document.getElementById("form1").style.opacity="1";
+    document.getElementById("modal2").style.opacity="1";
+    document.getElementById("modal2").style.pointerEvents="auto";
+    reserva.codigo=generarStringAleatorio();
+    document.getElementById("codigo-final").innerHTML= "Codigo de reservación: " + reserva.codigo;
+}
+
+function cerrarmodalfinal(){
+    document.getElementById("modal2").style.pointerEvents = "none";
+    document.getElementById("modal2").style.opacity = "0";
 }
 
 function verificarNombre(cadena) {
@@ -549,4 +755,48 @@ function verificarNumeros(cadena) {
     
     // Testea la cadena con la expresión regular y retorna el resultado
     return regex.test(cadena);
+}
+
+function generarStringAleatorio() {
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let resultado = '';
+    for (let i = 0; i < 5; i++) {
+        const indiceAleatorio = Math.floor(Math.random() * caracteres.length);
+        resultado += caracteres.charAt(indiceAleatorio);
+    }
+    return resultado;
+}
+
+function listar(){
+    let div = document.getElementById("div-consulta");
+    while (div.firstChild) {
+        div.removeChild(div.firstChild);
+    }
+    for (let i = 0; i < listareservas.length; i++) {
+
+        let element = document.createElement("p");
+        element.innerHTML = "Reserva: " + listareservas[i].codigo;
+        div.appendChild(element)
+
+        element = document.createElement("p");
+        element.innerHTML = "Nombre de reservante: " + listareservas[i].nombre;
+        div.appendChild(element)
+
+        element = document.createElement("p");
+        element.innerHTML = "Asientos: " + listareservas[i].asientos;
+        div.appendChild(element)
+
+        for (let index = 0; index < listareservas[i].pasajeros; index++) {
+            element = document.createElement("p");
+            element.innerHTML = `Pasajero ${index}: ` + listareservas[i].pasajeros[index].nombre;
+            div.appendChild(element)
+        }
+
+        element = document.createElement("hr");
+        div.appendChild(element)
+    }
+}
+
+function limpiar(){
+
 }

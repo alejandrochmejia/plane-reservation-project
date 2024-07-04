@@ -21,8 +21,16 @@
 
     <!--VENTANA DE CONSULTA -->
     <div id="modal">
-        <div class="consulta">
-            <img src="resources/close.png" id="close-modal" onclick="return cerrarmodal()">
+        <img src="resources/close.png" id="close-modal" onclick="return cerrarmodal()">
+        <div class="consulta" id="div-consulta">
+        </div>
+    </div>
+
+    <!--VENTANA DE AGRADECIMIENTO -->
+    <div id="modal2" onclick="return cerrarmodalfinal()">
+        <div class="modal-final">
+            <h1 id="texto-final">¡Muchas gracias por confiar en nosotros!</h1>
+            <h1 id="codigo-final"></h1>
         </div>
     </div>
 
@@ -164,7 +172,45 @@
         <h2 class="subtitulo">Datos de factura</h2>
         <div id="datos-factura"></div>
         <h2 class="subtitulo">Servicios adicionales</h2>
+        <div class="div-factura">
+            <input type="checkbox" id="equipaje-adicional">
+            <label for="equipaje-adicional">Equipaje Adicional (10$ por kilogramo)</label>
+            <input id="kilogramos" class="inputForm" type="number" value="1" disabled="true">
+        </div>
+        <div class="div-factura">
+            <input type="checkbox" id="ayuda-equipaje">
+            <label for="ayuda-equipaje">Ayuda con equipaje: 15$</label>
+        </div>
+        <div class="div-factura">
+            <input type="checkbox" id="traductores">
+            <label for="traductores">Traductor de apoyo (Translate to English): 50$</label>
+        </div>
+        <div class="div-factura">
+            <input type="checkbox" id="medico">
+            <label for="medico">Servicio Médico (Silla de ruedas y más): Gratuito</label>
+        </div>
         <h2 class="subtitulo">Servicios requeridos</h2>
+        <div id="div-cuidado" class="div-factura"></div>
+        <h2 class="subtitulo">Información adicional</h2>
+        <ul>
+            <li>Merida (MRD), Venezuela // Valencia (VLN), Venezuela</li>
+            <li>Duración de vuelo: 1h 5min</li>
+            <li>Aéronave: Airbus A380</li>
+            <li>Capacidad: 122 Pasajeros</li>
+        </ul>
+        <h2 class="subtitulo">Total</h2>
+        <h3 id="montofinal"></h3>
+        <h2 class="subtitulo">Facturación</h2>
+        <div class="tarjeta">
+            <input type="text" id="numero-tarjeta" class="input-tarjeta" placeholder="Numero de tarjeta" maxlength="16">
+            <input type="text" id="dia" class="input-tarjeta" placeholder="DD" maxlength="2">
+            <input type="text" id="mes" class="input-tarjeta" placeholder="MM" maxlength="2">
+            <input type="text" id="cvv" class="input-tarjeta" placeholder="CVV" maxlength="3">
+            <input type="text" id="nombre-tarjeta" class="input-tarjeta" placeholder="Titular de la tarjeta">
+        </div>
+        <div class="divform-boton">
+            <button class="boton-form" onclick="return btnfacturacion()">Pagar</button>
+        </div>
     </div>
 
     <!--HOME PAGE-->
