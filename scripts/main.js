@@ -1,4 +1,6 @@
-class Reserva{
+// --------------------- CLASES USADAS EN EL PROYECTO --------------------------------
+
+class Reserva{ //Clase de reservas
     constructor(nombre,documento,email,telefono,pais,direccion,boletos){
         this.boletos = boletos
         this.nombre = nombre;
@@ -22,9 +24,11 @@ class Pasajero{
     }
 }
 
+// ------------------------------- EVENTLISTENER CUANDO EL DOCUMENTO SE CARGA (EVENT LISTENER PRINCIPAL)----------------------------------------
+
 document.addEventListener('DOMContentLoaded', (event) => {
     //Asientos Valencia - Merida
-    const asientos = [
+    const asientos = [ //Diagrama de asientos de vuelo Valencia - Merida
         'x','x','x','30c','30d','30e','30f','30g','x','x',
         '31a','31b','31c','31d','31e','31f','31g','31h','31j',
         '32a','32b','32c','32d','32e','32f','32g','32h','32j',
@@ -42,14 +46,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
         'x','x','x','x','44d','44e','44f','x','x','x','x',
         'x','x','x','x','45d','45e','45f','x','x','x','x',
     ]
-    const mapa = document.getElementById('asientos-mapa');
-    asientos.forEach(seat => {
-        if (seat == 'x'){
+    const mapa = document.getElementById('asientos-mapa'); //Se obtiene el div donde se guardan los asientos
+    asientos.forEach(seat => { //Se recorre el diagrama de asientos
+
+        if (seat == 'x'){ // Por cada 'x' se pone un espacio en blanco
             const elemento = document.createElement('div');
             elemento.classList.add('blank');
             mapa.appendChild(elemento);
 
-        } else if (seat.charAt(seat.length - 1) == 'b' || seat.charAt(seat.length - 1) == 'g'){
+        } else if (seat.charAt(seat.length - 1) == 'b' || seat.charAt(seat.length - 1) == 'g'){ //Se obtienen los asientos que estan al lado de los pasillos para dejar el espacio
             const elemento = document.createElement('div');
             elemento.classList.add('seat', 'available');
             elemento.textContent = seat;
@@ -60,7 +65,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             elemento2.classList.add('blank');
             mapa.appendChild(elemento2);
 
-        }else if (seat == '38j' || seat == '37j' || seat == '36j'){
+        }else if (seat == '38j' || seat == '37j' || seat == '36j'){ //Se obtienen los asientos de la izquierda que está al lado de la salida de emergencia
             const elemento = document.createElement('div');
             elemento.classList.add('seat', 'available','emergency');
             elemento.textContent = seat;
@@ -71,7 +76,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             elemento.style.borderRightWidth="3px"
             mapa.appendChild(elemento);
 
-        }else if (seat == '38a' || seat == '37a' || seat == '36a'){
+        }else if (seat == '38a' || seat == '37a' || seat == '36a'){ //Se obtienen los asientos de la derecha que estan al lado de la salida de emergencia
             const elemento = document.createElement('div');
             elemento.classList.add('seat','available','emergency');
             elemento.textContent = seat;
@@ -82,7 +87,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             elemento.style.borderLeftWidth="3px"
             mapa.appendChild(elemento);
 
-        } else {
+        } else { //Sino, se obtienen los asientos normales
             const elemento = document.createElement('div');
             elemento.classList.add('seat', 'available');
             elemento.textContent = seat;
@@ -93,7 +98,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     })
 
     //Asientos Merida-Valencia
-    const asientos1 = [
+    const asientos1 = [ //Diagrama de asientos de vuelo Merida - Valencia
         'x','x','x','30c','30d','30e','30f','30g','x','x',
         '31a','31b','31c','31d','31e','31f','31g','31h','31j',
         '32a','32b','32c','32d','32e','32f','32g','32h','32j',
@@ -111,14 +116,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
         'x','x','x','x','44d','44e','44f','x','x','x','x',
         'x','x','x','x','45d','45e','45f','x','x','x','x',
     ]
-    const mapa1 = document.getElementById('asientos-mapa1');
-    asientos1.forEach(seat1 => {
-        if (seat1 == 'x'){
+    const mapa1 = document.getElementById('asientos-mapa1'); //Se obtiene el div donde se guardan los asientos
+    asientos1.forEach(seat1 => { //Se recorre el diagrama de asientos
+        if (seat1 == 'x'){ // Por cada 'x' se pone un espacio en blanco
             const elemento1 = document.createElement('div');
             elemento1.classList.add('blank');
             mapa1.appendChild(elemento1);
 
-        } else if (seat1.charAt(seat1.length - 1) == 'b' || seat1.charAt(seat1.length - 1) == 'g'){
+        } else if (seat1.charAt(seat1.length - 1) == 'b' || seat1.charAt(seat1.length - 1) == 'g'){ //Se obtienen los asientos que estan al lado de los pasillos para dejar el espacio
             const elemento1 = document.createElement('div');
             elemento1.classList.add('seat', 'available');
             elemento1.textContent = seat1;
@@ -129,7 +134,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             elemento21.classList.add('blank');
             mapa1.appendChild(elemento21);
 
-        }else if (seat1 == '38j' || seat1 == '37j' || seat1 == '36j'){
+        }else if (seat1 == '38j' || seat1 == '37j' || seat1 == '36j'){ //Se obtienen los asientos de la izquierda que está al lado de la salida de emergencia
             const elemento1 = document.createElement('div');
             elemento1.classList.add('seat', 'available','emergency');
             elemento1.textContent = seat1;
@@ -140,7 +145,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             elemento1.style.borderRightWidth="3px"
             mapa1.appendChild(elemento1);
 
-        }else if (seat1 == '38a' || seat1 == '37a' || seat1 == '36a'){
+        }else if (seat1 == '38a' || seat1 == '37a' || seat1 == '36a'){ //Se obtienen los asientos de la derecha que estan al lado de la salida de emergencia
             const elemento1 = document.createElement('div');
             elemento1.classList.add('seat', 'available','emergency');
             elemento1.textContent = seat1;
@@ -151,7 +156,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             elemento1.style.borderLeftWidth="3px"
             mapa1.appendChild(elemento1);
 
-        } else {
+        } else { //Sino, se obtienen asientos comunes
             const elemento1 = document.createElement('div');
             elemento1.classList.add('seat', 'available');
             elemento1.textContent = seat1;
@@ -162,14 +167,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
     })
 });
 
-let listareservas = [];
+// ----------------------------------------------------------------------------------------------------------------------------------
 
-let cant;
-let elegidos;
-let reserva = 0;
-var darkmode = false;
+let listareservas = []; //Lista principal del proyecto, donde se guardaran todas las reservas
 
-function btnhomepage(){
+let cant; //Cantidad de pasajeros propuesta (Se actualizará por cada reserva)
+let elegidos; //Cantidad de pasajeros elegidos (Un contador que verificara si se eligio la cantidad de pasajeros correcta)
+let reserva; //Variable que guardará la reserva que se esté haciendo (Se actualizará por cada reserva)
+var darkmode = false; //Variable que detecta el darkmode
+
+// ----------------------------------------------------------------------------------------------------------------------------------
+//----------------------------- BOTONES ---------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------------------------------
+
+function btnhomepage(){ //Función que se ejecuta al presionar el botón del HomePage
     let form = document.getElementById("homepage");
     form.style.display="none";
     document.getElementById("form1").style.display="block";
@@ -239,7 +250,9 @@ function btnhomepage(){
     return false;
 }
 
-function btnreservar(){
+// ----------------------------------------------------------------------------------------------------------------------------------
+
+function btnreservar(){ //Funion que se ejecuta al presionar el boton del form1 (Reservacion de Vuelo)
     cant = document.getElementById("Cantpasajeros").value;
     elegidos = 0;
     let form = document.getElementById("form1");
@@ -255,8 +268,9 @@ function btnreservar(){
 
     return false;
 };
+// ----------------------------------------------------------------------------------------------------------------------------------
 
-function btncontacto(){
+function btncontacto(){ //Funcion que se ejecuta al presionar el boton del form2 (Datos de contacto) 
 
     let nombrereservante = document.getElementById("nombre-contacto").value;
     let prefixDocumento = document.getElementById("prefijo-documento").value;
@@ -406,7 +420,9 @@ function btncontacto(){
     return false;
 };
 
-function btnpasajeros(){
+// ----------------------------------------------------------------------------------------------------------------------------------
+
+function btnpasajeros(){ //Funcion que se ejecuta al presionar el boton del form3 (Datos de pasajeros)
     reserva.pasajeros = [];
     let band = false;
     boleto = document.getElementById('tipoboleto').value;
@@ -464,7 +480,9 @@ function btnpasajeros(){
     }
 }
 
-function btnasientos(){
+// ----------------------------------------------------------------------------------------------------------------------------------
+
+function btnasientos(){ //Funcion que se ejecuta al presionar el boton de la seleccion de asientos Valencia - Merida
     document.getElementById("numero-tarjeta").value = '';
     document.getElementById("dia").value = '';
     document.getElementById("mes").value = '';
@@ -508,7 +526,9 @@ function btnasientos(){
     };
 }
 
-function btnasientos1(){
+// ----------------------------------------------------------------------------------------------------------------------------------
+
+function btnasientos1(){ //Funcion que se ejecuta al presionar el boton de la seleccion de asientos Merida - Valencia
     if (cant != document.getElementsByClassName('selected').length){
         window.alert("Faltan asientos por elegir");
         return false;
@@ -528,7 +548,53 @@ function btnasientos1(){
     return false;
 }
 
-function seleccionarAsiento(seat){
+// ----------------------------------------------------------------------------------------------------------------------------------
+
+function btnfacturacion(){ //Funcion que se ejecuta al presionar el boton del form de Facturacion
+    numero = document.getElementById("numero-tarjeta").value
+    dd = document.getElementById("dia").value;
+    mm = document.getElementById("mes").value;
+    cvv = document.getElementById("cvv").value;
+    nombre = document.getElementById("nombre-tarjeta").value;
+
+    if (dd.length != 2 || verificarNumeros(dd)){
+        window.alert("Datos de la tarjeta erroneos")
+        return false;
+    } else if (mm.length != 2 || verificarNumeros(mm)){
+        window.alert("Datos de la tarjeta erroneos")
+        return false;
+    } else if (cvv.length != 3 || verificarNumeros(cvv)){
+        window.alert("Datos de la tarjeta erroneos")
+        return false;
+    }  else if (numero.length != 16 || verificarNumeros(numero)){
+        window.alert("Datos de la tarjeta erroneos")
+        return false;
+    } else if(verificarNombre(nombre)){
+        window.alert("Datos de la tarjeta erroneos")
+        return false;
+    } else if (dd == "" || mm == "" || numero == "" || cvv == "" || nombre == ""){
+        window.alert("Datos de la tarjeta erroneos")
+        return false;
+    }
+
+    listareservas.push(reserva);
+    let form = document.getElementById("form6");
+    form.style.display="none";
+    document.getElementById("form1").style.display="block";
+    document.getElementById("form1").style.opacity="1";
+    document.getElementById("modal2").style.opacity="1";
+    document.getElementById("modal2").style.pointerEvents="auto";
+    reserva.codigo=generarStringAleatorio();
+    document.getElementById("codigo-final").innerHTML= "Codigo de reservación: " + reserva.codigo;
+}
+
+// ----------------------------------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------FIN DE BOTONES-----------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------------------------------
+
+function seleccionarAsiento(seat){ //Funcion que se ejecuta al presionar un asiento
     const elemento = document.getElementById(seat);
     if (elemento.classList.contains('available') && elegidos < cant) {
         elemento.classList.add('selected');
@@ -541,18 +607,38 @@ function seleccionarAsiento(seat){
     }
 }
 
-function abrirmodal(){
-    document.getElementById("modal").style.pointerEvents = "auto";
-    document.getElementById("modal").style.opacity = "1";
-    listar();
+function abrirmodal(){ //Funcion que abre la ventana de consultas
+    listar()
+    document.getElementById("form1").style.display="none";
+    document.getElementById("form1").style.opacity="1";
+
+    document.getElementById("form2").style.display="none";
+    document.getElementById("form2").style.opacity="1";
+
+    document.getElementById("form3").style.display="none";
+    document.getElementById("form3").style.opacity="1";
+
+    document.getElementById("form4").style.display="none";
+    document.getElementById("form4").style.opacity="1";
+
+    document.getElementById("form5").style.display="none";
+    document.getElementById("form5").style.opacity="1";
+
+    document.getElementById("form6").style.display="none";
+    document.getElementById("form6").style.opacity="1";
+
+    document.getElementById("modal").style.display="block";
+    document.getElementById("modal").style.opacity="1";
 }
 
-function cerrarmodal(){
-    document.getElementById("modal").style.pointerEvents = "none";
-    document.getElementById("modal").style.opacity = "0";
+function cerrarmodal(){ //Funcion que cierra la ventana de consultas
+    let form = document.getElementById("modal");
+    form.style.display="none";
+    document.getElementById("form1").style.display="block";
+    document.getElementById("form1").style.opacity="1";
 }
 
-function modooscuro(){
+function modooscuro(){ //Funcion que habilita y deshabilita el modo oscuro
     if (darkmode == false){
         console.log("test");
         document.getElementById("circulo").style.marginLeft = "50%";
@@ -569,7 +655,9 @@ function modooscuro(){
     }
 }
 
-function datosFactura(){
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+function datosFactura(){ //Funcion que imprime los datos de la factura
     let div = document.getElementById('datos-factura');
 
     while (div.firstChild) {
@@ -692,50 +780,14 @@ function datosFactura(){
 
 }
 
-function btnfacturacion(){
-    numero = document.getElementById("numero-tarjeta").value
-    dd = document.getElementById("dia").value;
-    mm = document.getElementById("mes").value;
-    cvv = document.getElementById("cvv").value;
-    nombre = document.getElementById("nombre-tarjeta").value;
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    if (dd.length != 2 || verificarNumeros(dd)){
-        window.alert("Datos de la tarjeta erroneos")
-        return false;
-    } else if (mm.length != 2 || verificarNumeros(mm)){
-        window.alert("Datos de la tarjeta erroneos")
-        return false;
-    } else if (cvv.length != 3 || verificarNumeros(cvv)){
-        window.alert("Datos de la tarjeta erroneos")
-        return false;
-    }  else if (numero.length != 16 || verificarNumeros(numero)){
-        window.alert("Datos de la tarjeta erroneos")
-        return false;
-    } else if(verificarNombre(nombre)){
-        window.alert("Datos de la tarjeta erroneos")
-        return false;
-    } else if (dd == "" || mm == "" || numero == "" || cvv == "" || nombre == ""){
-        window.alert("Datos de la tarjeta erroneos")
-        return false;
-    }
-
-    listareservas.push(reserva);
-    let form = document.getElementById("form6");
-    form.style.display="none";
-    document.getElementById("form1").style.display="block";
-    document.getElementById("form1").style.opacity="1";
-    document.getElementById("modal2").style.opacity="1";
-    document.getElementById("modal2").style.pointerEvents="auto";
-    reserva.codigo=generarStringAleatorio();
-    document.getElementById("codigo-final").innerHTML= "Codigo de reservación: " + reserva.codigo;
-}
-
-function cerrarmodalfinal(){
+function cerrarmodalfinal(){ //Funcion que cierra el modal final con el codigo de Reservacion
     document.getElementById("modal2").style.pointerEvents = "none";
     document.getElementById("modal2").style.opacity = "0";
 }
 
-function verificarNombre(cadena) {
+function verificarNombre(cadena) { //Funcion que verifica si una cadena pertenece a un nombre
     // Expresión regular para detectar cualquier cosa que no sea una letra o un espacio
     const regex = /[^\p{L}\s]/u;
     
@@ -743,7 +795,7 @@ function verificarNombre(cadena) {
     return regex.test(cadena);
 }
 
-function verificarEmail(cadena) {
+function verificarEmail(cadena) { //Funcion que verifica si una cadena pertenece a un email
     // Expresión regular para detectar un correo electrónico válido
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     
@@ -751,7 +803,7 @@ function verificarEmail(cadena) {
     return !regex.test(cadena);
 }
 
-function verificarNumeros(cadena) {
+function verificarNumeros(cadena) { //Funcion que verifica si una cadena pertenece a numeros
     // Expresión regular para verificar si la cadena contiene al menos un carácter que no sea un número
     const regex = /[^0-9]/;
     
@@ -759,7 +811,7 @@ function verificarNumeros(cadena) {
     return regex.test(cadena);
 }
 
-function generarStringAleatorio() {
+function generarStringAleatorio() { //Funcion que genera el codigo de reservacion
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let resultado = '';
     for (let i = 0; i < 5; i++) {
@@ -769,7 +821,7 @@ function generarStringAleatorio() {
     return resultado;
 }
 
-function listar(){
+function listar(){ //Funcion que lista todas las reservaciones hechas
     let div = document.getElementById("div-consulta");
     while (div.firstChild) {
         div.removeChild(div.firstChild);
@@ -799,17 +851,17 @@ function listar(){
     }
 }
 
-function abrirmodal3(){
+function abrirmodal3(){ //Funcion que abre la seccion de Cancelacion de reservas
     document.getElementById("modal3").style.pointerEvents = "auto";
     document.getElementById("modal3").style.opacity = "1";
 }
 
-function cerrarmodal3(){
+function cerrarmodal3(){ //Funcion que cierra la seccion de Cancelacion de reserva
     document.getElementById("modal3").style.pointerEvents = "none";
     document.getElementById("modal3").style.opacity = "0";
 }
 
-function eliminar(){
+function eliminar(){ //Funcion que elimina una reserva
     code = document.getElementById("input-cancelacion").value;
     for (let i = 0; i < listareservas.length; i++) {
         if (listareservas[i].codigo == code){
@@ -820,4 +872,5 @@ function eliminar(){
     document.getElementById("input-cancelacion").value = '';
     document.getElementById("modal3").style.pointerEvents = "none";
     document.getElementById("modal3").style.opacity = "0";
+    listar()
 }
