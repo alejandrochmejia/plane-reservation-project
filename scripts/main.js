@@ -415,7 +415,7 @@ function btncontacto(){ //Funcion que se ejecuta al presionar el boton del form2
         ninguno = document.createElement('option');
         ninguno.value = "Sin equipaje";
         ninguno.innerHTML = "Sin equipaje"
-        select2.appendChild(mano);
+        select2.appendChild(ninguno);
     }
     return false;
 };
