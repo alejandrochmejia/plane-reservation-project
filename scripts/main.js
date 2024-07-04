@@ -566,7 +566,7 @@ function btnfacturacion(){ //Funcion que se ejecuta al presionar el boton del fo
     } else if (cvv.length != 3 || verificarNumeros(cvv)){
         window.alert("Datos de la tarjeta erroneos")
         return false;
-    }  else if (numero.length != 16 || verificarNumeros(numero)){
+    }  else if (numero.length > 16 || verificarNumeros(numero) || numero.length < 14){
         window.alert("Datos de la tarjeta erroneos")
         return false;
     } else if(verificarNombre(nombre)){
