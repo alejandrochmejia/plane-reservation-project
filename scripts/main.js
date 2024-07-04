@@ -874,3 +874,35 @@ function eliminar(){ //Funcion que elimina una reserva
     document.getElementById("modal3").style.opacity = "0";
     listar()
 }
+
+function irAlInicio(){ //Funcion que te lleva devuelta al inicio
+    document.getElementById("form1").style.display="none";
+    document.getElementById("form1").style.opacity="1";
+
+    document.getElementById("form2").style.display="none";
+    document.getElementById("form2").style.opacity="1";
+
+    document.getElementById("form3").style.display="none";
+    document.getElementById("form3").style.opacity="1";
+
+    document.getElementById("form4").style.display="none";
+    document.getElementById("form4").style.opacity="1";
+
+    document.getElementById("form5").style.display="none";
+    document.getElementById("form5").style.opacity="1";
+
+    document.getElementById("form6").style.display="none";
+    document.getElementById("form6").style.opacity="1";
+
+    document.getElementById("modal").style.display="none";
+    document.getElementById("modal").style.opacity="block";
+
+    let form = document.getElementById("homepage");
+    form.style.display="block";
+    form.style.opacity = "1"
+
+    document.getElementById("consultar-boton").style.display="none";
+    document.getElementById("consultar-boton").style.opacity="0";
+    document.getElementById("cancelar-boton").style.display="none";
+    document.getElementById("cancelar-boton").style.opacity="0";
+}
