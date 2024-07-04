@@ -174,8 +174,10 @@ function btnhomepage(){
     form.style.display="none";
     document.getElementById("form1").style.display="block";
     document.getElementById("form1").style.opacity="1";
-    document.getElementById("consultar-boton").style.display="block";
+    document.getElementById("consultar-boton").style.display="inline";
     document.getElementById("consultar-boton").style.opacity="1";
+    document.getElementById("cancelar-boton").style.display="inline";
+    document.getElementById("cancelar-boton").style.opacity="1";
     select1 = document.getElementById("lugarOrigen")
     select2 = document.getElementById("lugarDestino")
     selectb = document.getElementById("tipoboleto")
@@ -786,9 +788,9 @@ function listar(){
         element.innerHTML = "Asientos: " + listareservas[i].asientos;
         div.appendChild(element)
 
-        for (let index = 0; index < listareservas[i].pasajeros; index++) {
+        for (let index = 0; index < listareservas[i].pasajeros.length; index++) {
             element = document.createElement("p");
-            element.innerHTML = `Pasajero ${index}: ` + listareservas[i].pasajeros[index].nombre;
+            element.innerHTML = `Pasajero ${index+1}: ` + listareservas[i].pasajeros[index].nombre;
             div.appendChild(element)
         }
 
@@ -797,6 +799,25 @@ function listar(){
     }
 }
 
-function limpiar(){
+function abrirmodal3(){
+    document.getElementById("modal3").style.pointerEvents = "auto";
+    document.getElementById("modal3").style.opacity = "1";
+}
 
+function cerrarmodal3(){
+    document.getElementById("modal3").style.pointerEvents = "none";
+    document.getElementById("modal3").style.opacity = "0";
+}
+
+function eliminar(){
+    code = document.getElementById("input-cancelacion").value;
+    for (let i = 0; i < listareservas.length; i++) {
+        if (listareservas[i].codigo == code){
+            reserva = listareservas[i]
+        }
+    }
+    listareservas = listareservas.filter(r => r != reserva);
+    document.getElementById("input-cancelacion").value = '';
+    document.getElementById("modal3").style.pointerEvents = "none";
+    document.getElementById("modal3").style.opacity = "0";
 }

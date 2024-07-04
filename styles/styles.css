@@ -114,7 +114,7 @@ nav {
     margin-bottom: 30px;
     transition: all 0.2s ease-out;
     cursor: pointer;
-    margin-top: 10px;
+    margin-bottom: 40px;
 }
 
 .boton-form:hover{
@@ -517,4 +517,58 @@ nav {
     margin: auto;
     margin-top: 100px;
     margin-bottom: 100px;
+}
+
+#modal3{
+    background-color: rgba(0,0,0,.8);
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    opacity:0;
+    pointer-events:none;
+    transition: all 1s;
+    color: #ffffff;
+    font-family: Montserrat;
+}
+
+#cancelar-boton{
+    height: 30px;
+    width: 200px;
+    box-sizing: border-box;
+    margin-left: 5px;
+    display: none;
+    opacity: 0;
+}
+
+#div-cancelar{
+    margin: auto;
+    width: 500px;
+    height: 100px;
+    background-color: #2d3250;
+    border-radius: 20px;
+}
+
+#h3-modal{
+    border-left: #f9b17a solid 3px;
+    padding-left: 2px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+#btncancelar{
+    background-color: #2d3250;
+    border: #424769 solid 2px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+
+#btncancelar:hover{
+    background-color: #8e3838;
+    border: #a32a2a solid 2px;
+    color: white;
+    border-radius: 5px;
 }

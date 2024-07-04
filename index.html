@@ -25,6 +25,17 @@
         </div>
     </div>
 
+    <!--VENTANA DE CANCELACIÓN -->
+    <div id="modal3">
+        <img src="resources/close.png" id="close-modal" onclick="return cerrarmodal3()">
+        <div class="cancelar" id="div-cancelar">
+            <h3 id="h3-modal">Cancelar reserva</h3>
+            <label for="input-cancelacion" style="display: block; margin-left: 40px;">Ingrese codigo de reserva a cancelar: </label>
+            <input type="text" id="input-cancelacion" style="margin-left: 40px;">
+            <button id="btncancelar" onclick="return eliminar()">Eliminar</button>
+        </div>
+    </div>
+
     <!--VENTANA DE AGRADECIMIENTO -->
     <div id="modal2" onclick="return cerrarmodalfinal()">
         <div class="modal-final">
@@ -226,5 +237,6 @@
     </div>
 
     <button onclick="return abrirmodal()" class="boton-form" id="consultar-boton">Consultar</button>
+    <button onclick="return abrirmodal3()" class="boton-form" id="cancelar-boton">Cancelar Reserva</button>
 </body>
 </html>
