@@ -147,8 +147,7 @@ nav {
     max-height: 1000vh;
     margin-top: 50px;
     margin-bottom: 50px;
-    min-width: 40vw;
-    max-width: 60vw;
+    min-width: 650px;
 }
 
 #form5{
@@ -158,8 +157,8 @@ nav {
     max-height: 1000vh;
     margin-top: 50px;
     margin-bottom: 50px;
-    min-width: 40vw;
-    max-width: 60vw;
+    min-width: 500px;
+    min-width: 650px;
 }
 
 #form3{
