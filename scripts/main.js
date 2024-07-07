@@ -868,6 +868,18 @@ function eliminar(){ //Funcion que elimina una reserva
             reserva = listareservas[i]
         }
     }
+    let asientosOcupados = Array.from(document.getElementsByClassName('unavailable'));
+    for (let i = 0; i < asientosOcupados.length; i++) {
+        for (let j = 0; j < reserva.asientos.length; j++) {
+            if (asientosOcupados[i].id == reserva.asientos[j]) {
+                let asiento = document.getElementById(reserva.asientos[j]);
+                asiento.classList.remove('unavailable');
+                asiento.classList.add('available');
+        }
+    }
+}
+
+
     listareservas = listareservas.filter(r => r != reserva);
     document.getElementById("input-cancelacion").value = '';
     document.getElementById("modal3").style.pointerEvents = "none";
